@@ -95,7 +95,7 @@ Den udleverede `hentIndlaeg()` gør det omvendte: den læser med `getItem` og ge
 
 **Vigtigt:** Lokal lagring er ikke vores fælles database. Privat browsing, browseroprydning og flytning af filen kan ændre eller fjerne lagringen. Gem ikke noget vigtigt eller personligt her.
 
-**Hvis du får beskeden "Kan ikke gemme":** Spørg underviseren. Browseren kan blokere lagring fra en dobbeltklikket fil. Brug den udleverede HTTPS-adresse til samme eksempel. Skifter du adresse, flytter de gamle lokale data ikke automatisk med.
+**Hvis du får beskeden "Kan ikke gemme":** Spørg underviseren. Browseren kan blokere lagring fra en dobbeltklikket fil. Prøv en anden browser sammen med underviseren. Brug derefter samme browser og filplacering til øvelsen; gamle data flytter ikke automatisk med.
 
 ## Hjælpekoden
 

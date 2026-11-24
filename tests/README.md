@@ -1,40 +1,46 @@
 # Afprøvning og vedligeholdelse
 
-Disse værktøjer er til underviser/vedligeholder. Eleverne behøver ingen af installationerne nedenfor.
+Disse kontroller er til underviseren og vedligeholderen. Eleverne følger [Dev Container-vejledningen](../docs/DEVCONTAINER.md).
 
 ## Frontend
 
-Med Node på din egen maskine:
+På en maskine med Node:
 
 ```sh
 node tests/frontend.cjs
 ```
 
-Kontrollerer point og sejr, formularinput, trimning, JSON-genindlæsning, sletning og lagerfejl. Brug også browserprøverne i elevvejledningerne, da en JavaScript-test ikke kan garantere en bestemt elevbrowsers file/localStorage-politik.
+Kontrollerer point og sejr, formularinput, trimning, JSON-genindlæsning, sletning og lagerfejl. Afprøv også de lokale filer i elevernes browsere, da file/localStorage-adfærd kan variere.
 
 ## Rails
 
-Byg workshop-imaget som beskrevet i driftsguiden. Fra repoets rod på en udviklingsmaskine, der må køre betroet kursuskode:
+Inde i Dev Containeren, fra kursusmappens rod:
 
 ```sh
-docker run --rm --entrypoint sh \
-  -v "$PWD:/kursus" \
-  piratkode-workshop:2026-11 /kursus/tests/rails.sh
+sh tests/rails.sh
 ```
 
-Dette bind-mount er kun et vedligeholdelsestestmiljø. Elevernes Compose-filer bruger named volumes og monterer ikke værtens repo. Tests opretter kun Rails-testdatabaser under de fire appmapper; brug ikke produktionsdata til test.
+Testene dækker alle fire Rails-apps: startadfærd, formularer, validering, CSRF-afvisning, escaped output, modelregler, gemning, læsning i en ny browsersession og grænsen på 50 indlæg. Databasekontroller, som ikke gælder for den pågældende app, bliver sprunget over. Tests bruger separate testdatabaser; de sletter testindlæg, men ændrer ikke udviklingsdatabasen.
 
-Testene dækker alle fire Rails-apps: forventet startadfærd, formularer, validering, CSRF-afvisning, escaped output, modelregler, gemning, visning i ny session og grænse/rækkefølge på 50 indlæg. Nogle databasetests er kun relevante i gang 5 og udfører derfor ingen databasepåstande i gang 4.
+For at afprøve i en isoleret kopi uden VS Code, kør fra repoets rod på en maskine med Docker:
 
-## Manuel acceptprøve før et hold starter
+```sh
+docker build -f .devcontainer/Dockerfile -t piratkode-dev:2026-11 .
+docker build -f tests/Dockerfile -t piratkode-tests:2026-11 .
+```
 
-- Alle tre lokale facitapps åbner og virker på en faktisk elevmaskine.
-- localStorage overlever F5 på den valgte adresse, eller eleven får en klar fejlbesked.
-- Browsereditoren virker over HTTPS, inklusive terminal og filgemning.
-- Hvert hold kan starte gang 4 og 5 uden at installere gems.
-- To browsere kan læse samme database, og to hold har forskellige databaser.
-- Gem et eventyr, stop/start containeren, start Rails igen, og kontrollér indlægget.
-- Tag backup og afprøv gendannelse i et separat testhold.
-- En lille Kamal-deploy bevarer et eksisterende produktionsindlæg.
+Det andet build kopierer koden til testimaget og kører Rails-testene dér. Den lokale kursusmappe bliver ikke monteret i dette testmiljø.
 
-Den sidste del kræver underviserens rigtige server, DNS, proxy og secrets. Den kan ikke bevises alene ved at bygge repoet lokalt.
+## Praktisk prøve før undervisningen
+
+- Åbn hele kursusmappen med **Reopen in Container** på en faktisk elevmaskine. Første build og opsætning skal lykkes før gang 4.
+- Kør alle fire valg under **Start app**, ét ad gangen. Stop hver app med Ctrl + C før næste valg.
+- Besøg `http://localhost:3000`, og kontrollér, at VS Codes Ports-panel videresender port 3000 til localhost.
+- Gem en kodeændring, og kontrollér resultatet efter genindlæsning.
+- Gem et eventyr i gang-5-facit eller en færdig elevversion. Kontrollér samme indlæg i en anden browser på samme computer.
+- Stop og start Rails. Stop og genåbn containeren. Genopbyg derefter containeren. Kontrollér efter hvert trin, at både kodeændring og indlæg findes.
+- Kontrollér, at start og facit har separate databaser.
+- Stop Rails, tag en filbackup, og afprøv kopien i en separat mappe. Stop originalens app før kopien startes på samme port.
+- Afprøv de første tre øvelser uden container, inklusive localStorage efter F5.
+
+Et bestået Docker-build erstatter ikke prøven med VS Code på elevernes Windows-maskiner.

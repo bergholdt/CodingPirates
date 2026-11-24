@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start app",
+      "type": "process",
+      "command": "sh",
+      "args": ["-c", "ruby bin/rails db:prepare && ruby bin/rails server -b 0.0.0.0 -P /tmp/piratkode-rails.pid"],
+      "options": { "cwd": "${workspaceFolder}/undervisning/${input:app}" },
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated", "focus": true },
+      "runOptions": { "instanceLimit": 1 }
+    }
+  ],
+  "inputs": [
+    {
+      "id": "app",
+      "type": "pickString",
+      "description": "Hvilken app vil du starte? Stop den forrige med Ctrl + C først.",
+      "options": [
+        { "label": "Gang 4 - min flaskepost", "value": "04-flaskepost/start" },
+        { "label": "Gang 5 - min logbog", "value": "05-faelles-logbog/start" },
+        { "label": "Gang 4 - facit", "value": "04-flaskepost/facit" },
+        { "label": "Gang 5 - facit", "value": "05-faelles-logbog/facit" }
+      ],
+      "default": "04-flaskepost/start"
+    }
+  ]
+}

@@ -4,14 +4,14 @@
 
 **Du lærer:** lidt Ruby, HTTP, GET, POST, routes, controller og view. Vi bruger Rails til at samle delene. Denne gang viser vi teksten; næste gang gemmer vi den.
 
-**Start:** Underviseren giver jer to adresser og et holdpassword: én til browsereditoren og én til jeres app. Browsereditoren ligner VS Code. Der er allerede installeret Ruby, Rails og SQLite på serveren. I skal ikke installere dem på jeres Windows-maskine.
+**Start:** Åbn hele kursusmappen i VS Code, og vælg **Dev Containers: Reopen in Container**. Installationen skal være afprøvet inden mødet; se [Dev Container-vejledningen](../../docs/DEVCONTAINER.md). Ruby, Rails og SQLite kører lokalt i containeren.
 
 ## Plan: 120 minutter
 
 | Minutter | Aktivitet |
 |---|---|
 | 0-10 | Genbesøg den lokale logbog. Hvorfor kan andre ikke se den? |
-| 10-25 | Åbn fjerneditoren, start appen, og find tre vigtige filer. |
+| 10-25 | Åbn Dev Containeren, start appen, og find tre vigtige filer. |
 | 25-40 | Ruby-laboratorium i terminalen. |
 | 40-55 | Følg en formular fra browser gennem en route til en controller. |
 | 55-65 | Pause. |
@@ -22,19 +22,21 @@
 
 ## 1. Start jeres app
 
-Åbn browsereditoren. Hvis den viser **Restricted Mode**, så få underviseren til at bekræfte tillid til den udleverede kursusmappe. Vælg derefter **Terminal → New Terminal**. Skriv de tre linjer, én ad gangen:
+Vælg **Terminal → Run Task → Start app → Gang 4 - min flaskepost**. Opgaven klargør databasen og starter Rails. Vent, til terminalen viser, at serveren lytter på port 3000.
+
+Åbn **http://localhost:3000** i din browser. Du skal ikke logge ind. Serveren modtager endnu ikke navn og tekst korrekt, fordi vi mangler to trin. `localhost` er din egen computer; Rails er en rigtig serverproces, selv om den kører lokalt.
+
+**Vigtigt:** Lad terminalen være åben, mens du arbejder. Stop serveren med **Ctrl + C** i terminalen, før du skifter opgave. Kun én app kan bruge port 3000 ad gangen.
+
+Åbn filerne i `undervisning/04-flaskepost/start`. Koden ligger i kursusmappen på din egen computer. Gem med Ctrl + S, og opdater browseren. Brug ikke `facit`, medmindre du vil undersøge det færdige eksempel.
+
+**Se kommandoerne bag knappen:** Hvis du vil starte manuelt, så stop opgaven først. Vælg **Terminal → New Terminal** inde i containeren og skriv:
 
 ```sh
 cd /workspace/undervisning/04-flaskepost/start
-bin/rails db:prepare
-bin/rails server -b 0.0.0.0
+ruby bin/rails db:prepare
+ruby bin/rails server -b 0.0.0.0 -P /tmp/piratkode-rails.pid
 ```
-
-Terminalen bliver optaget, mens serveren kører. Det er normalt. Åbn jeres **app-adresse** i en anden fane; log ind med holdnavn og holdpassword. Serveren modtager endnu ikke navn og tekst korrekt, fordi vi mangler to trin.
-
-**Vigtigt:** Luk ikke terminalen under arbejdet. For at stoppe serveren klikker du i terminalen og trykker Ctrl + C. Kun én Rails-server må bruge port 3000 i jeres miljø ad gangen.
-
-Åbn filerne i mappen `04-flaskepost/start`. Arbejdet ligger nu på serveren, ikke på din Windows-maskine. Gem stadig med Ctrl + S. Rails indlæser kodeændringer, når du opdaterer siden.
 
 ## 2. Fem minutter med Ruby
 
@@ -116,7 +118,7 @@ Den udleverede kode kontrollerer længderne. Godkendte data vises med `render :v
 2. Prøv kun mellemrum. Du skal få en forståelig fejl.
 3. Skriv `<script>alert(1)</script>` som eventyr. Det skal vises som tekst. Rails escaper output; brug ikke `raw` eller `html_safe` på brugerens tekst.
 4. Klik *Send en ny flaskepost*. Den nye GET-side er tom. Browseren kan spørge om genafsendelse, hvis du i stedet trykker F5 på et POST-svar; det er ikke en database.
-5. Åbn appen på makkerens maskine. Der er ingen fælles historik endnu.
+5. Åbn `http://localhost:3000` i en anden browser på samme computer. Der er ingen fælles historik endnu.
 
 ## Bonusmissioner
 

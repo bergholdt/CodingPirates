@@ -1,10 +1,10 @@
 # Gang 5: En fælles logbog med database
 
-**Mission:** Gem eventyr, så andre kan læse dem, og vis appen online.
+**Mission:** Gem eventyr, læs dem fra to browsere på samme computer, og bevar dem efter genstart.
 
-**Du lærer:** database, tabel, række, model, migration, validering og gem/hent med Active Record. Vi bruger SQLite: en rigtig database i en fil på serveren.
+**Du lærer:** database, tabel, række, model, migration, validering og gem/hent med Active Record. Vi bruger SQLite: en rigtig database i en lokal fil, som Rails læser og skriver.
 
-**Start:** Brug samme browsereditor. Gem gang 4, og stop dens Rails-server med Ctrl + C. Gang 5 har sin egen startmappe; dit arbejde fra gang 4 bliver liggende. Flaskepostdelen er allerede færdig i den nye mappe. Dagens nye filer er markeret nedenfor.
+**Start:** Brug samme lokale Dev Container i VS Code. Gem gang 4, og stop dens Rails-server med Ctrl + C. Gang 5 har sin egen startmappe; dit arbejde fra gang 4 bliver liggende. Flaskepostdelen er allerede færdig i den nye mappe. Dagens nye filer er markeret nedenfor.
 
 ## Plan: 120 minutter
 
@@ -17,10 +17,10 @@
 | 55-65 | Pause. |
 | 65-85 | Test fra to browsere, fejl og genstart. |
 | 85-100 | Egen ændring, validering og bonus. |
-| 100-115 | Underviserstyret deploy med Kamal; se adressen virke. |
+| 100-115 | Genstart containeren, tag backup og vis appen frem. |
 | 115-120 | Vis jeres app og forklar, hvor data bor. |
 
-Deploy er forberedt og øvet af underviseren. Hvis netværket driller, viser I den fungerende app på udviklingsadressen; databaseøvelsen kan stadig gennemføres.
+Logbogen er fælles for browserne, der besøger denne app på samme computer. Den er ikke offentlig og deles ikke automatisk med andre computere.
 
 ## 1. Fra papirkort til database
 
@@ -55,15 +55,17 @@ end
 
 En **migration** beskriver en ændring af databasens struktur. Denne laver tabellen. Rails tilføjer et id; `timestamps` tilføjer oprettelses- og ændringstid. Migrationen ligger klar som hjælpekode; du skal forstå felterne, ikke lære kommandoerne udenad.
 
-Start nu appen i terminalen:
+Vælg **Terminal → Run Task → Start app → Gang 5 - min logbog**. Opgaven klargør databasen og starter serveren.
+
+Hvis du vil starte manuelt i stedet, så brug terminalen inde i containeren:
 
 ```sh
 cd /workspace/undervisning/05-faelles-logbog/start
-bin/rails db:prepare
-bin/rails server -b 0.0.0.0
+ruby bin/rails db:prepare
+ruby bin/rails server -b 0.0.0.0 -P /tmp/piratkode-rails.pid
 ```
 
-`db:prepare` opretter databasen og kører de migrationer, der mangler. Kommandoen sletter ikke eksisterende indlæg. Åbn eller opdater app-adressen. Listen er tom, og startversionen gemmer endnu intet.
+`db:prepare` opretter databasen og kører de migrationer, der mangler. Kommandoen sletter ikke eksisterende indlæg. Åbn eller opdater **http://localhost:3000**. Listen er tom, og startversionen gemmer endnu intet.
 
 ## 3. Hent data
 
@@ -107,10 +109,11 @@ Den udleverede linje før betingelsen bygger en ny model:
 
 ## 5. Se ind i databasen
 
-Åbn en ekstra terminal i samme appmappe:
+Åbn en ekstra terminal i containeren, og gå til appmappen:
 
 ```sh
-bin/rails runner 'puts Entry.count'
+cd /workspace/undervisning/05-faelles-logbog/start
+ruby bin/rails runner 'puts Entry.count'
 ```
 
 Det viser antallet af indlæg. Rails bruger SQL under overfladen. Underviseren viser en forespørgsel direkte i SQLite:
@@ -125,7 +128,7 @@ sqlite3 storage/development.sqlite3 'SELECT id, pirat, tekst FROM entries;'
 
 1. Gem to eventyr. Er det nyeste øverst?
 2. Tryk F5 flere gange. Antallet af indlæg skal være uændret.
-3. Åbn **samme app-adresse** på en anden maskine og log ind. Kan I læse begge indlæg? En anden holds adresse har sin egen database.
+3. Åbn **http://localhost:3000** i en anden browser på samme computer, fx Edge og Firefox. Kan I læse begge indlæg? På en anden computer peger localhost på den computer; den har sin egen database.
 4. Stop Rails-serveren med Ctrl + C og start den igen med samme kommando og mappe. Er indlæggene der stadig?
 5. Send kun mellemrum. Der skal komme en fejl og ingen ny række.
 6. Skriv `<b>Skat!</b>` i et eventyr. Det skal vises som tekst, ikke udføres som HTML.
@@ -138,13 +141,17 @@ Listen opdateres ved en ny sideindlæsning, ikke automatisk i alle åbne faner. 
 - **Mellem:** Sæt tekstgrænsen til 140 tegn. Ret modellen, formularens `maxlength` og fejlbeskeden, så regler og beskeder stemmer overens. Undersøg, om serveren også afviser for lang tekst.
 - **Svær:** Tilføj et skibsnavn via en ny migration, model, formular og `entry_params`. Få underviseren til at hjælpe med migrationskommandoen. Redigér ikke en allerede kørt migration for at ændre tabellen.
 
-## 6. Gør appen tilgængelig med Kamal
+## 6. Genstart, gem og vis frem
 
-Underviseren hjælper med at tage en kopi af jeres færdige kode, gemme den i Git og køre deployment. I ændrer selv en overskrift, som gør jeres app genkendelig.
+Giv appen en personlig overskrift. Vis den til et andet makkerpar på jeres egen computer, og forklar én kodeændring.
 
-Se forløbet: **kode → Docker-image → server → webadresse**. Kamal starter appen og forbinder adressen med den. Databasen ligger i en separat volume, som bliver bevaret, når appens kode udskiftes.
+1. Gem alle filer, og stop Rails med Ctrl + C.
+2. Vælg **Dev Containers: Reopen Folder Locally** via Ctrl + Shift + P. Stop kursuscontaineren i Docker Desktop.
+3. Vælg **Dev Containers: Reopen in Container** i VS Code igen, og start **Gang 5 - min logbog** via **Start app**.
+4. Åbn `http://localhost:3000`. Kontrollér, at overskriften og eventyrene stadig findes.
+5. Stop Rails igen, og kopiér hele kursusmappen til en backupmappe eller et USB-drev sammen med underviseren.
 
-Udviklingsdatabasen flyttes ikke automatisk til den publicerede app. Skriv et nyt testeventyr på den publicerede adresse, deploy en lille tekstændring, og kontrollér, at indlægget stadig findes. Det er vores sidste persistensprøve.
+Kode og databasen i `undervisning/05-faelles-logbog/start/storage` ligger i din lokale kursusmappe. Containeren indeholder værktøjerne, men er ikke det eneste sted, dine filer findes. Slet ikke kursusmappen for at genstarte appen. Git gemmer koden; SQLite-filerne er udeladt fra Git og skal med i din filbackup.
 
 ## Før du går
 

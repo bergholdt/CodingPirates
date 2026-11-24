@@ -18,10 +18,11 @@ De præcise planer på 120 minutter står i hver elevvejledning. Alle indeholder
 
 - Prøv VS Code og browseren på den ældste elevmaskine. Se [editorvejledningen](EDITOR.md). Installer editoren før første møde, så installation ikke optager undervisningstiden.
 - Hent og udpak materialet. Lav gerne et USB-drev eller en lokal filkopi som reserve til de første tre gange.
-- Afprøv gang 3 på samme adresse og browser, eleverne skal bruge. localStorage på file-adresser er ikke ens i alle browsere. Forbered eventuelt en statisk HTTPS-udgave.
-- Byg Docker-imaget, opret hold og gennemfør [driftsprøven](DRIFT.md) inden gang 4. Giv hvert par et lille kort med editoradresse, appadresse, holdnavn og password. Passwords skal ikke stå i det offentlige repo eller i det printede fællesmateriale.
-- Test alle hold samtidig og prøv login fra lokalets netværk. Kontrollér, at terminalen virker, og at en Rails-side faktisk kan åbnes via proxyen.
-- Gør en egen facitapp klar til projektion. Forbered Kamal-deploy inden gang 5, inklusive registry, hostnavn, secrets og en afprøvet volume. Deploy må ikke blive en fejlsøgningssession, som stjæler databaseøvelsen.
+- Afprøv gang 3 på samme adresse og browser, eleverne skal bruge. localStorage på file-adresser er ikke ens i alle browsere. Aftal en browser og en fast filplacering, hvor lagringen virker.
+- Gennemfør [installationen af Dev Containers](DEVCONTAINER.md) med en voksen før gang 4. Afprøv både gang 4 og 5 på hver maskine, og hent alt nødvendigt på forhånd. Afsæt en særskilt installationsgang, hvis der er behov.
+- Kontrollér, at Docker Desktop kan køre på maskinerne. På Windows skal WSL 2 og virtualisering fungere. Hvis en maskine ikke kan bruges, arbejder makkerparret på en allerede afprøvet maskine.
+- Prøv at gemme en fil, stoppe og genåbne containeren og genopbygge den. Filen og gang-5-databasen skal stadig findes. Opbevar kursusmappen uden for OneDrive/iCloud og netværksdrev.
+- Gør en lokal facitapp klar til projektion via opgaven **Start app**. Vis forskellen mellem en serverproces på egen computer og en offentlig webserver.
 
 ## Gentag den samme undervisningsrytme
 
@@ -82,7 +83,7 @@ Gennemgå migrationen som en beskrivelse af tabellen. Vis, at `Entry.new` ikke g
 
 **Typiske fejl:** Kun den ene hent-linje er rettet; `if false` er ikke erstattet; `db:prepare` er ikke kørt; den gamle server er stadig på port 3000; elever forventer automatisk live-opdatering i alle browsere.
 
-Til deploy vælger hvert par en lille personlig overskrift. Hvis alle ikke kan nå individuelt deploy, demonstrér på ét pars app i fællesskab og færdiggør de øvrige bagefter. Alle skal stadig teste deres egen database.
+Hvert par giver appen en personlig overskrift og viser den på deres egen computer. Brug to forskellige browsere på samme maskine til at vise, at databasen er fælles for appens besøgende. Samme localhost-adresse på en anden PC fører til den anden PC, ikke til makkerens app. Afslut med genstart og backup af den lokale kursusmappe.
 
 **Opsamling:** Eleven tegner browser, Rails og SQLite og kan placere HTML, CSS, JavaScript, Ruby og data.
 
@@ -90,7 +91,7 @@ Til deploy vælger hvert par en lille personlig overskrift. Hvis alle ikke kan n
 
 - Hvis et par er bagefter, kopier den mindste manglende blok fra facit. Bed dem forklare den og ændre én værdi. Undgå at erstatte hele deres personlige arbejde uden aftale.
 - Hvis et par er hurtigt færdigt, giv en bonus med en tydelig test: eksempelvis ny grænse, ny rolle eller en ny kolonne. Lad dem hjælpe med spørgsmål frem for at overtage andres tastatur.
-- Hvis serveren er utilgængelig, brug første gangs lokale spil til at øve formular og dynamik. Brug diagram og printede Rails-filer til at følge en request. Reel serverpersistens kræver, at serveren kommer tilbage; kald ikke papirøvelsen en fungerende database.
+- Hvis Docker ikke starter, lad parret fortsætte på en afprøvet makkermaskine. De første tre lokale øvelser kan altid bruges til at øve videre uden container.
 - Hold fem minutter til oprydning, gemning og en kort mundtlig refleksion hver gang.
 
 ## En enkel vurdering

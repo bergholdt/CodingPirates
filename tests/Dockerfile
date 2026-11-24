@@ -1,4 +1,4 @@
-FROM piratkode-workshop:2026-11
+FROM piratkode-dev:2026-11
 USER root
 COPY --chown=pirate:pirate . /kursus
 USER pirate

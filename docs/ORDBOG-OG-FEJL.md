@@ -33,8 +33,9 @@
 | Persistens | At data bliver bevaret mellem forespørgsler/genstarter. |
 | Docker-image | En pakket opskrift på app og dens runtime. |
 | Container | Et kørende miljø baseret på et image. |
-| Volume | Et lager, som kan overleve en containers udskiftning. |
-| Deploy | At udgive en version af koden til en kørende app. |
+| Dev Container | Et udviklingsmiljø, som VS Code åbner i en container på din computer. |
+| localhost | Denne computer; samme adresse på en anden PC peger på den anden PC. |
+| Bind mount | En lokal mappe, som også er tilgængelig inde i containeren. |
 | Git-commit | Et gemt trin i programkodens historie; det er ikke en databasebackup. |
 
 ## Find fejlen
@@ -48,14 +49,15 @@
 | En liste vises dobbelt | Ryd listen før du tegner den igen; undersøg `visIndlaeg`. |
 | Lokal logbog er væk | Samme browser, samme adresse og ikke privat browsing? Spørg før du sletter lageret. |
 | Forkerte æ/ø/å | Gem som UTF-8, og behold `<meta charset="utf-8">`. |
-| Editor-login virker, men appen viser 502 | Start Rails i editorens terminal. Kontrollér mappe og port. |
+| localhost:3000 svarer ikke | Start Docker Desktop, åbn kursusmappen i containeren, og vælg Start app. Kontrollér port 3000 i VS Codes Ports-panel. |
+| Reopen in Container mangler | Installér Microsofts Dev Containers-udvidelse, og åbn hele kursusmappen. |
 | Address already in use | Stop den gamle Rails-proces med Ctrl + C. Start ikke flere på port 3000. |
-| Blocked host | Underviseren kontrollerer APP_HOST og proxyens Host-header. |
+| Blocked host | Brug http://localhost:3000 på din egen computer. |
 | Rails viser en syntax error | Gå til den nævnte fil/linje; se efter et manglende `end` eller anførselstegn. |
-| Databasetabellen mangler | Kør `bin/rails db:prepare` fra den rigtige appmappe. |
+| Databasetabellen mangler | Kør `ruby bin/rails db:prepare` fra den rigtige appmappe. |
 | Startversionen af gang 5 gemmer ikke | Er begge TRIN 1-linjer og `if false` erstattet? |
-| Makkeren ser ikke mit indlæg | Brug samme app-adresse og genindlæs. Det er ikke en live-chat. |
-| Produktionsdata mangler efter deploy | Underviseren kontrollerer volume-navn og DATABASE_PATH. Opret ikke en ny volume ved hvert deploy. |
+| Makkeren ser ikke mit indlæg | Brug to browsere på samme computer, og genindlæs. Appen deles ikke mellem computere. |
+| Indlæggene ser ud til at være væk | Kontrollér, at du bruger samme kursusmappe og start/facit-app som før. De har hver sin database. |
 
 ## Tre gode fejlvaner
 

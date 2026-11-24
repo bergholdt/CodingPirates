@@ -1,6 +1,6 @@
 # Kom i gang med Visual Studio Code
 
-Vi anbefaler **Visual Studio Code (VS Code)**. Det er en editor, der farver HTML, CSS og JavaScript og hjælper med afsluttende tags og kodeforslag. Du behøver ingen udvidelser, konto eller AI-assistent til kurset.
+Vi anbefaler **Visual Studio Code (VS Code)**. Det er en editor, der farver HTML, CSS og JavaScript og hjælper med afsluttende tags og kodeforslag. Gang 1-3 kræver ingen udvidelser eller konto. Til gang 4-5 bruger vi udvidelsen Dev Containers og Docker Desktop.
 
 ## Før første møde
 
@@ -32,10 +32,12 @@ Brug eventuelt **View → Word Wrap** til lange linjer og zoom ind med Ctrl + pl
 
 ## Rails i gang 4 og 5
 
-Her bruger vi en VS Code-lignende editor direkte i browseren på underviserens server. Ruby og Rails er allerede installeret dér. Åbn den udleverede editoradresse og log ind med holdets password. Find filer i venstre side og terminalen via Terminal → New Terminal. Du skal ikke installere Ruby, Docker eller Rails på Windows.
+VS Code bliver på din computer. Ruby, Rails og SQLite kører i en lokal Dev Container, som er et færdigt udviklingsmiljø til kurset.
 
-Der er to faner: editorens adresse og appens adresse. Appen viser resultatet, når Rails-serveren er startet i terminalen. Ctrl + S gemmer kode på serveren; F5 i app-fanen opdaterer resultatet. Brug de udleverede app-adresser frem for editorens automatiske port-links.
+Følg [installationsvejledningen](DEVCONTAINER.md) sammen med en voksen inden gang 4. Åbn hele kursusmappen i VS Code, tryk **Ctrl + Shift + P**, og vælg **Dev Containers: Reopen in Container**. Vent, til opsætningen er færdig.
 
-Den lokale VS Code og browsereditoren har ikke automatisk de samme filer. De første tre gange gemmer du på din PC; de sidste to i holdets workspace på serveren. Bed underviseren om en kodekopi efter forløbet.
+Vælg **Terminal → Run Task → Start app**, og vælg dagens opgave. Åbn `http://localhost:3000` i browseren. Ctrl + S gemmer koden i din lokale kursusmappe; F5 i browseren viser ændringen. Stop appen med Ctrl + C i dens terminal, før du skifter opgave.
+
+Både editor, app og database arbejder på din egen computer. `localhost` betyder denne computer; adressen deler ikke appen med andre maskiner.
 
 Kilde: [VS Codes indbyggede HTML-hjælp](https://code.visualstudio.com/docs/languages/html).

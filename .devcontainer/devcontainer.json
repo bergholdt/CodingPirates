@@ -1,0 +1,23 @@
+{
+  "name": "Piratkode - Ruby og Rails",
+  "build": { "dockerfile": "Dockerfile", "context": ".." },
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+  "workspaceFolder": "/workspace",
+  "remoteUser": "pirate",
+  "init": true,
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": { "label": "Piratkode", "onAutoForward": "notify", "requireLocalPort": true }
+  },
+  "postCreateCommand": "sh .devcontainer/setup.sh",
+  "waitFor": "postCreateCommand",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "remote.localPortHost": "localhost",
+        "files.eol": "\n",
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  }
+}

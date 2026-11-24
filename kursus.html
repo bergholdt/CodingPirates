@@ -6,12 +6,12 @@
 </style></head><body><main>
 <header class="forside"><small>Coding Pirates · 5 gange à 2 timer</small><h1>Piratkode</h1><h2>Fra skattekiste til Rails</h2>
 <svg xmlns="http://www.w3.org/2000/svg" width="260" height="160" viewBox="0 0 260 160" role="img" aria-label="En skattekiste med guldmønter"><g stroke="#182f3d" stroke-width="3"><rect x="20" y="60" width="160" height="85" rx="10" fill="#f7e7c2"/><rect x="20" y="30" width="160" height="50" rx="15" fill="#e5ad35"/><path d="M50 30v115M150 30v115"/><rect x="86" y="65" width="28" height="34" fill="white"/><circle cx="100" cy="80" r="4"/><g fill="#e5ad35"><circle cx="210" cy="130" r="13"/><circle cx="235" cy="140" r="11"/><circle cx="215" cy="100" r="11"/></g></g></svg>
-<p>Byg et spil. Giv piraten et navn. Gem jeres eventyr.<br>Til sidst deler I en rigtig webapp med en database.</p>
-<nav><ol><li><a href="#del-0">Kom i gang med editoren</a></li><li><a href="#del-1">1. Skattekisten</a></li><li><a href="#del-2">2. Piratprofilen</a></li><li><a href="#del-3">3. Den lokale logbog</a></li><li><a href="#del-4">4. Flaskepost med Rails</a></li><li><a href="#del-5">5. Den fælles logbog</a></li><li><a href="#del-6">Ordbog og fejlfinding</a></li></ol></nav>
+<p>Byg et spil. Giv piraten et navn. Gem jeres eventyr.<br>Til sidst bygger I en rigtig webapp med database på jeres egen computer.</p>
+<nav><ul><li><a href="#del-0">Kom i gang med editoren</a></li><li><a href="#del-1">1. Skattekisten</a></li><li><a href="#del-2">2. Piratprofilen</a></li><li><a href="#del-3">3. Den lokale logbog</a></li><li><a href="#del-4">Klargør din Dev Container</a></li><li><a href="#del-5">4. Flaskepost med Rails</a></li><li><a href="#del-6">5. Den fælles logbog</a></li><li><a href="#del-7">Ordbog og fejlfinding</a></li></ul></nav>
 <p class="printtip">Print med Ctrl + P: A4, 100 %, uden browserens ekstra sidehoved. Kodefelter og illustrationer fungerer også i sort-hvid.</p>
 <p><strong>Mit piratnavn:</strong></p><div class="noter"></div><p><strong>Min makker:</strong></p><div class="noter"></div>
 </header><section class="kapitel" id="del-0"><h1>Kom i gang med Visual Studio Code</h1>
-<p>Vi anbefaler <strong>Visual Studio Code (VS Code)</strong>. Det er en editor, der farver HTML, CSS og JavaScript og hjælper med afsluttende tags og kodeforslag. Du behøver ingen udvidelser, konto eller AI-assistent til kurset.</p>
+<p>Vi anbefaler <strong>Visual Studio Code (VS Code)</strong>. Det er en editor, der farver HTML, CSS og JavaScript og hjælper med afsluttende tags og kodeforslag. Gang 1-3 kræver ingen udvidelser eller konto. Til gang 4-5 bruger vi udvidelsen Dev Containers og Docker Desktop.</p>
 <h2>Før første møde</h2>
 <p>Underviseren eller en voksen hjælper med installation fra <a href="https://code.visualstudio.com/download">den officielle downloadside</a>. Vælg Visual Studio Code, ikke det større Visual Studio.</p>
 <p>Den aktuelle Windows-udgave kræver Windows 10 eller 11, 64-bit. Tjek <a href="https://code.visualstudio.com/docs/supporting/requirements">systemkrav</a> på forhånd. På en ældre maskine, som ikke opfylder kravene, kan eleven bruge Notesblok og samme kursusfiler. Skolens eller foreningens regler for installation gælder stadig.</p>
@@ -55,9 +55,10 @@
 <p><strong>F5 bruges i browseren</strong> til at opdatere siden. F5 i VS Code starter fejlsøgning og er ikke det samme.</p>
 <p>Brug eventuelt <strong>View → Word Wrap</strong> til lange linjer og zoom ind med Ctrl + plus. Åbn kode og browser ved siden af hinanden. Når flere filer er ændret, så gem dem alle før opdatering.</p>
 <h2>Rails i gang 4 og 5</h2>
-<p>Her bruger vi en VS Code-lignende editor direkte i browseren på underviserens server. Ruby og Rails er allerede installeret dér. Åbn den udleverede editoradresse og log ind med holdets password. Find filer i venstre side og terminalen via Terminal → New Terminal. Du skal ikke installere Ruby, Docker eller Rails på Windows.</p>
-<p>Der er to faner: editorens adresse og appens adresse. Appen viser resultatet, når Rails-serveren er startet i terminalen. Ctrl + S gemmer kode på serveren; F5 i app-fanen opdaterer resultatet. Brug de udleverede app-adresser frem for editorens automatiske port-links.</p>
-<p>Den lokale VS Code og browsereditoren har ikke automatisk de samme filer. De første tre gange gemmer du på din PC; de sidste to i holdets workspace på serveren. Bed underviseren om en kodekopi efter forløbet.</p>
+<p>VS Code bliver på din computer. Ruby, Rails og SQLite kører i en lokal Dev Container, som er et færdigt udviklingsmiljø til kurset.</p>
+<p>Følg <a href="#del-4">installationsvejledningen</a> sammen med en voksen inden gang 4. Åbn hele kursusmappen i VS Code, tryk <strong>Ctrl + Shift + P</strong>, og vælg <strong>Dev Containers: Reopen in Container</strong>. Vent, til opsætningen er færdig.</p>
+<p>Vælg <strong>Terminal → Run Task → Start app</strong>, og vælg dagens opgave. Åbn <code>http://localhost:3000</code> i browseren. Ctrl + S gemmer koden i din lokale kursusmappe; F5 i browseren viser ændringen. Stop appen med Ctrl + C i dens terminal, før du skifter opgave.</p>
+<p>Både editor, app og database arbejder på din egen computer. <code>localhost</code> betyder denne computer; adressen deler ikke appen med andre maskiner.</p>
 <p>Kilde: <a href="https://code.visualstudio.com/docs/languages/html">VS Codes indbyggede HTML-hjælp</a>.</p>
 </section>
 <section class="kapitel" id="del-1"><h1>Gang 1: Skattekisten</h1>
@@ -400,7 +401,7 @@ statusfelt.textContent = &quot;Gemt i denne browser.&quot;;
 <li>Tryk <em>Slet min lokale logbog</em>, vælg først Annuller og bagefter OK. Opdater siden og se forskellen.</li>
 </ol>
 <p><strong>Vigtigt:</strong> Lokal lagring er ikke vores fælles database. Privat browsing, browseroprydning og flytning af filen kan ændre eller fjerne lagringen. Gem ikke noget vigtigt eller personligt her.</p>
-<p><strong>Hvis du får beskeden &quot;Kan ikke gemme&quot;:</strong> Spørg underviseren. Browseren kan blokere lagring fra en dobbeltklikket fil. Brug den udleverede HTTPS-adresse til samme eksempel. Skifter du adresse, flytter de gamle lokale data ikke automatisk med.</p>
+<p><strong>Hvis du får beskeden &quot;Kan ikke gemme&quot;:</strong> Spørg underviseren. Browseren kan blokere lagring fra en dobbeltklikket fil. Prøv en anden browser sammen med underviseren. Brug derefter samme browser og filplacering til øvelsen; gamle data flytter ikke automatisk med.</p>
 <h2>Hjælpekoden</h2>
 <p><code>try</code> forsøger noget; <code>catch</code> fanger en fejl og viser en forståelig besked. Den udleverede kode tjekker også formen på data, begrænser listen til 100 indlæg og spørger før sletning. Du behøver ikke skrive den del selv.</p>
 <p>Vi bruger <code>textContent</code> frem for <code>innerHTML</code>, fordi indlæg skal være tekst. Prøv at gemme <code>&lt;h1&gt;Skat!&lt;/h1&gt;</code> som eventyr; det må ikke blive til en rigtig overskrift.</p>
@@ -413,10 +414,120 @@ statusfelt.textContent = &quot;Gemt i denne browser.&quot;;
 <h2>Før du går</h2>
 <p>Tegn tre kasser: JavaScript-hukommelse, browserens lager og server. Placér dagens data i de rigtige kasser. Hvad mangler vi, før alle pirater kan læse den samme logbog?</p>
 </section>
-<section class="kapitel" id="del-4"><h1>Gang 4: Flaskepost med Ruby og Rails</h1>
+<section class="kapitel" id="del-4"><h1>Rails på din egen computer</h1>
+<p>Til gang 4 og 5 bruger vi <strong>VS Code Dev Containers</strong>. Containeren indeholder Ruby, Rails og SQLite. Du redigerer i VS Code og ser appen i din almindelige browser. Alt kører lokalt; du skal ikke forbinde til underviserens server.</p>
+<h2>Før gang 4: få hjælp af en voksen</h2>
+<p>Installationen og den første opstart skal være færdige inden undervisningen. Der hentes værktøjer fra internettet, og første build kan tage tid.</p>
+<ol>
+<li>Installér <a href="https://code.visualstudio.com/download">Visual Studio Code</a>, hvis det ikke allerede er på computeren.</li>
+<li>Kontrollér <a href="https://docs.docker.com/desktop/setup/install/windows-install/">Docker Desktops aktuelle Windows-systemkrav</a>. Der kræves en understøttet Windows-version, mindst 8 GB RAM og aktiveret hardwarevirtualisering. Brug <strong>WSL 2</strong> og <strong>Linux containers</strong>. En voksen hjælper med Windows-funktioner, opdateringer og eventuel genstart. På en administreret skolecomputer skal skolens IT hjælpe, hvis installationen er låst.</li>
+<li>Installér Docker Desktop fra samme officielle side, og start programmet. Vent, til Docker-motoren kører. Hvis Docker efterspørger en nyere WSL, følg installationsvejledningen og genstart efter behov.</li>
+<li>Åbn Extensions i VS Code med <strong>Ctrl + Shift + X</strong>. Installér <strong>Dev Containers</strong>, udgivet af <strong>Microsoft</strong> (<code>ms-vscode-remote.remote-containers</code>).</li>
+</ol>
+<p>På Mac bruges <a href="https://docs.docker.com/desktop/setup/install/mac-install/">Docker Desktop til Mac</a> til den rigtige processor: Apple Silicon eller Intel. På Linux kan underviseren bruge Docker Engine og samme Dev Containers-udvidelse.</p>
+<p>Du skal ikke installere Ruby, Rails, SQLite, Node eller Git separat for at følge øvelserne. Hvis computeren ikke kan køre Docker, arbejder du sammen med en makker på en afprøvet computer. Gang 1-3 kræver stadig kun editor og browser.</p>
+<h2>Åbn kursusmappen første gang</h2>
+<ol>
+<li>Hent kursusmaterialet via <strong>Code → Download ZIP</strong>, eller få ZIP-filen af underviseren. Vælg <strong>Udpak alle</strong> i Stifinder.</li>
+<li>Læg den udpakkede mappe et fast sted på computeren, fx <code>C:\Users\dit-navn\Piratkode</code>. Brug en lokal mappe uden for OneDrive, iCloud og netværksdrev. Arbejd ikke inde i ZIP-filen.</li>
+<li>Åbn <strong>File → Open Folder</strong> i VS Code. Vælg <strong>hele kursusmappen</strong>, hvor <code>README.md</code>, <code>.devcontainer</code>, <code>.vscode</code> og <code>undervisning</code> ligger. Til gang 4-5 skal du ikke åbne en enkelt <code>start</code>-mappe som projekt.</li>
+<li>Hvis VS Code spørger om tillid, få underviseren til at bekræfte, at det er de udleverede kursusfiler.</li>
+<li>Tryk <strong>Ctrl + Shift + P</strong>, skriv <strong>Dev Containers: Reopen in Container</strong>, og vælg kommandoen. På Mac bruges Cmd + Shift + P.</li>
+<li>Vent på, at miljøet bliver bygget, og opsætningen er færdig. VS Code viser containerens navn i nederste venstre hjørne. Der installeres værktøjer og klargøres databaser; din elevkode bliver ikke erstattet med facit.</li>
+</ol>
+<p>Åbn <strong>Terminal → New Terminal</strong> og prøv <code>ruby --version</code>. Hvis du ser en Ruby-version, er terminalen inde i det rigtige miljø.</p>
+<h2>Start appen</h2>
+<ol>
+<li>Vælg <strong>Terminal → Run Task → Start app</strong>.</li>
+<li>Vælg <strong>Gang 4 - min flaskepost</strong> eller <strong>Gang 5 - min logbog</strong>. Facitmulighederne åbner de færdige eksempler og har egne databaser.</li>
+<li>Vent på, at terminalen viser, at Rails lytter på port 3000.</li>
+<li>Åbn <strong><a href="http://localhost:3000">http://localhost:3000</a></strong> i din almindelige browser. Du skal ikke logge ind.</li>
+</ol>
+<p>Redigér filerne under dagens <code>undervisning/.../start</code>. Gem med <strong>Ctrl + S</strong>, og opdater browseren med <strong>F5</strong>. Ruby-koden kører i containeren, og browseren modtager HTML.</p>
+<p><code>localhost</code> betyder <strong>denne computer</strong>. En makker på en anden computer ser ikke din app ved at skrive samme adresse. I gang 5 tester vi den fælles database med to forskellige browsere på samme computer.</p>
+<h2>Stop, skift opgave og kom tilbage</h2>
+<p>Klik i terminalen, hvor Rails kører, og tryk <strong>Ctrl + C</strong>. Vent, til serveren er stoppet. Vælg derefter <strong>Start app</strong> igen og den nye opgave. Der kan kun køre én kursusapp på port 3000 ad gangen.</p>
+<p>Når du er færdig: gem alle filer, stop appen, og luk VS Code. Du kan stoppe kursuscontaineren i Docker Desktop. Næste gang starter du Docker Desktop, åbner <strong>samme kursusmappe</strong> i VS Code og vælger <strong>Reopen in Container</strong>, hvis den ikke allerede er åben dér. Start derefter appen igen.</p>
+<h2>Hvor bliver arbejdet gemt?</h2>
+<table>
+<thead>
+<tr>
+<th>Indhold</th>
+<th>Placering</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Din kode</td>
+<td>Dagens <code>start</code>-mappe i den lokale kursusmappe</td>
+</tr>
+<tr>
+<td>Logbogens database</td>
+<td><code>undervisning/05-faelles-logbog/start/storage/development.sqlite3</code></td>
+</tr>
+<tr>
+<td>Ruby, Rails og værktøjerne</td>
+<td>Containerens image</td>
+</tr>
+</tbody></table>
+<p>Kursusmappen er tilgængelig inde i containeren som <code>/workspace</code>. Det er de samme filer, du kan finde i Stifinder. Stop, genstart og <strong>Dev Containers: Rebuild Container</strong> bevarer dem. En genopbygning kan kræve internet igen. Slet ikke kursusmappen for at genstarte miljøet.</p>
+<p><strong>Backup:</strong> Stop Rails med Ctrl + C, og kopiér hele kursusmappen til en backupmappe eller et USB-drev. Databaser er udeladt fra Git; en Git-commit er derfor ikke en backup af indlæggene. Ved gendannelse bruger du en separat mappe og åbner den i VS Code. Stop den oprindelige app, før du starter kopien på port 3000.</p>
+<h2>Når noget driller</h2>
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Prøv dette</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Reopen in Container findes ikke</td>
+<td>Kontrollér, at Microsofts Dev Containers-udvidelse er installeret.</td>
+</tr>
+<tr>
+<td>VS Code foreslår at vælge en containeropskrift</td>
+<td>Du har sandsynligvis åbnet en undermappe. Åbn hele kursusmappen med <code>.devcontainer</code>.</td>
+</tr>
+<tr>
+<td>Cannot connect to Docker</td>
+<td>Start Docker Desktop, og vent på, at motoren kører.</td>
+</tr>
+<tr>
+<td>WSL eller virtualisering fejler</td>
+<td>Få en voksen til at følge Docker-installationsvejledningen. Fortsæt på en afprøvet makkermaskine imens.</td>
+</tr>
+<tr>
+<td>Første opstart fejler ved download</td>
+<td>Kontrollér internetforbindelsen. Brug Rebuild Container efter forbindelsen er tilbage.</td>
+</tr>
+<tr>
+<td>localhost:3000 svarer ikke</td>
+<td>Kontrollér, at Start app stadig kører. Åbn VS Codes <strong>Ports</strong>-panel, og kontrollér videresendelsen af port 3000.</td>
+</tr>
+<tr>
+<td>Port 3000 er optaget</td>
+<td>Stop den forrige kursusapp med Ctrl + C. Luk også andre kursusprojekter, som bruger porten. Bed underviseren undersøge andre programmer, før de stoppes.</td>
+</tr>
+<tr>
+<td>Ruby findes ikke, eller kommandoen køres i PowerShell</td>
+<td>Åbn mappen i containeren, og brug <strong>Terminal → New Terminal</strong> inde i VS Code.</td>
+</tr>
+<tr>
+<td>Koden ændrer ikke den viste side</td>
+<td>Kontrollér, om Start app kører start eller facit, og gem den tilsvarende fil.</td>
+</tr>
+<tr>
+<td>Gamle indlæg mangler</td>
+<td>Kontrollér kursusmappe og start/facit-valg. Hver app har sin egen database. Slet ikke filer for at prøve dig frem.</td>
+</tr>
+</tbody></table>
+<h2>Senere kurser</h2>
+<p>Dev Containers kan også bruges med fx PHP eller .NET. Et nyt kursus får sin egen opskrift med de nødvendige værktøjer; elevernes arbejdsgang er stadig at åbne projektet i en container og starte appen. Dette kursusmiljø indeholder Ruby og Rails.</p>
+<p>Kilde: <a href="https://code.visualstudio.com/docs/devcontainers/containers">VS Code Dev Containers</a>.</p>
+</section>
+<section class="kapitel" id="del-5"><h1>Gang 4: Flaskepost med Ruby og Rails</h1>
 <p><strong>Mission:</strong> Send et eventyr til en server, og få en rigtig HTML-side tilbage.</p>
 <p><strong>Du lærer:</strong> lidt Ruby, HTTP, GET, POST, routes, controller og view. Vi bruger Rails til at samle delene. Denne gang viser vi teksten; næste gang gemmer vi den.</p>
-<p><strong>Start:</strong> Underviseren giver jer to adresser og et holdpassword: én til browsereditoren og én til jeres app. Browsereditoren ligner VS Code. Der er allerede installeret Ruby, Rails og SQLite på serveren. I skal ikke installere dem på jeres Windows-maskine.</p>
+<p><strong>Start:</strong> Åbn hele kursusmappen i VS Code, og vælg <strong>Dev Containers: Reopen in Container</strong>. Installationen skal være afprøvet inden mødet; se <a href="#del-4">Dev Container-vejledningen</a>. Ruby, Rails og SQLite kører lokalt i containeren.</p>
 <h2>Plan: 120 minutter</h2>
 <table>
 <thead>
@@ -431,7 +542,7 @@ statusfelt.textContent = &quot;Gemt i denne browser.&quot;;
 </tr>
 <tr>
 <td>10-25</td>
-<td>Åbn fjerneditoren, start appen, og find tre vigtige filer.</td>
+<td>Åbn Dev Containeren, start appen, og find tre vigtige filer.</td>
 </tr>
 <tr>
 <td>25-40</td>
@@ -463,14 +574,15 @@ statusfelt.textContent = &quot;Gemt i denne browser.&quot;;
 </tr>
 </tbody></table>
 <h2>1. Start jeres app</h2>
-<p>Åbn browsereditoren. Hvis den viser <strong>Restricted Mode</strong>, så få underviseren til at bekræfte tillid til den udleverede kursusmappe. Vælg derefter <strong>Terminal → New Terminal</strong>. Skriv de tre linjer, én ad gangen:</p>
+<p>Vælg <strong>Terminal → Run Task → Start app → Gang 4 - min flaskepost</strong>. Opgaven klargør databasen og starter Rails. Vent, til terminalen viser, at serveren lytter på port 3000.</p>
+<p>Åbn <strong><a href="http://localhost:3000">http://localhost:3000</a></strong> i din browser. Du skal ikke logge ind. Serveren modtager endnu ikke navn og tekst korrekt, fordi vi mangler to trin. <code>localhost</code> er din egen computer; Rails er en rigtig serverproces, selv om den kører lokalt.</p>
+<p><strong>Vigtigt:</strong> Lad terminalen være åben, mens du arbejder. Stop serveren med <strong>Ctrl + C</strong> i terminalen, før du skifter opgave. Kun én app kan bruge port 3000 ad gangen.</p>
+<p>Åbn filerne i <code>undervisning/04-flaskepost/start</code>. Koden ligger i kursusmappen på din egen computer. Gem med Ctrl + S, og opdater browseren. Brug ikke <code>facit</code>, medmindre du vil undersøge det færdige eksempel.</p>
+<p><strong>Se kommandoerne bag knappen:</strong> Hvis du vil starte manuelt, så stop opgaven først. Vælg <strong>Terminal → New Terminal</strong> inde i containeren og skriv:</p>
 <pre><code class="language-sh">cd /workspace/undervisning/04-flaskepost/start
-bin/rails db:prepare
-bin/rails server -b 0.0.0.0
+ruby bin/rails db:prepare
+ruby bin/rails server -b 0.0.0.0 -P /tmp/piratkode-rails.pid
 </code></pre>
-<p>Terminalen bliver optaget, mens serveren kører. Det er normalt. Åbn jeres <strong>app-adresse</strong> i en anden fane; log ind med holdnavn og holdpassword. Serveren modtager endnu ikke navn og tekst korrekt, fordi vi mangler to trin.</p>
-<p><strong>Vigtigt:</strong> Luk ikke terminalen under arbejdet. For at stoppe serveren klikker du i terminalen og trykker Ctrl + C. Kun én Rails-server må bruge port 3000 i jeres miljø ad gangen.</p>
-<p>Åbn filerne i mappen <code>04-flaskepost/start</code>. Arbejdet ligger nu på serveren, ikke på din Windows-maskine. Gem stadig med Ctrl + S. Rails indlæser kodeændringer, når du opdaterer siden.</p>
 <h2>2. Fem minutter med Ruby</h2>
 <p>Åbn endnu en terminal. Skriv <code>irb</code> og prøv én linje ad gangen:</p>
 <pre><code class="language-ruby">pirat = &quot;Kaptajn Krabbe&quot;
@@ -519,7 +631,7 @@ post &quot;flaskepost&quot;, to: &quot;flaskepost#create&quot;
 <li>Prøv kun mellemrum. Du skal få en forståelig fejl.</li>
 <li>Skriv <code>&lt;script&gt;alert(1)&lt;/script&gt;</code> som eventyr. Det skal vises som tekst. Rails escaper output; brug ikke <code>raw</code> eller <code>html_safe</code> på brugerens tekst.</li>
 <li>Klik <em>Send en ny flaskepost</em>. Den nye GET-side er tom. Browseren kan spørge om genafsendelse, hvis du i stedet trykker F5 på et POST-svar; det er ikke en database.</li>
-<li>Åbn appen på makkerens maskine. Der er ingen fælles historik endnu.</li>
+<li>Åbn <code>http://localhost:3000</code> i en anden browser på samme computer. Der er ingen fælles historik endnu.</li>
 </ol>
 <h2>Bonusmissioner</h2>
 <ul>
@@ -530,10 +642,10 @@ post &quot;flaskepost&quot;, to: &quot;flaskepost#create&quot;
 <h2>Før du går</h2>
 <p>Tegn: browser → route → controller → view → browser. Fortæl, hvor Ruby kører, og hvorfor en lokal HTML-fil ikke kan køre Rails. Gem alle filer. Behold mappen; næste gang åbner vi en ny startmappe med samme flaskepost og en databaseøvelse.</p>
 </section>
-<section class="kapitel" id="del-5"><h1>Gang 5: En fælles logbog med database</h1>
-<p><strong>Mission:</strong> Gem eventyr, så andre kan læse dem, og vis appen online.</p>
-<p><strong>Du lærer:</strong> database, tabel, række, model, migration, validering og gem/hent med Active Record. Vi bruger SQLite: en rigtig database i en fil på serveren.</p>
-<p><strong>Start:</strong> Brug samme browsereditor. Gem gang 4, og stop dens Rails-server med Ctrl + C. Gang 5 har sin egen startmappe; dit arbejde fra gang 4 bliver liggende. Flaskepostdelen er allerede færdig i den nye mappe. Dagens nye filer er markeret nedenfor.</p>
+<section class="kapitel" id="del-6"><h1>Gang 5: En fælles logbog med database</h1>
+<p><strong>Mission:</strong> Gem eventyr, læs dem fra to browsere på samme computer, og bevar dem efter genstart.</p>
+<p><strong>Du lærer:</strong> database, tabel, række, model, migration, validering og gem/hent med Active Record. Vi bruger SQLite: en rigtig database i en lokal fil, som Rails læser og skriver.</p>
+<p><strong>Start:</strong> Brug samme lokale Dev Container i VS Code. Gem gang 4, og stop dens Rails-server med Ctrl + C. Gang 5 har sin egen startmappe; dit arbejde fra gang 4 bliver liggende. Flaskepostdelen er allerede færdig i den nye mappe. Dagens nye filer er markeret nedenfor.</p>
 <h2>Plan: 120 minutter</h2>
 <table>
 <thead>
@@ -572,14 +684,14 @@ post &quot;flaskepost&quot;, to: &quot;flaskepost#create&quot;
 </tr>
 <tr>
 <td>100-115</td>
-<td>Underviserstyret deploy med Kamal; se adressen virke.</td>
+<td>Genstart containeren, tag backup og vis appen frem.</td>
 </tr>
 <tr>
 <td>115-120</td>
 <td>Vis jeres app og forklar, hvor data bor.</td>
 </tr>
 </tbody></table>
-<p>Deploy er forberedt og øvet af underviseren. Hvis netværket driller, viser I den fungerende app på udviklingsadressen; databaseøvelsen kan stadig gennemføres.</p>
+<p>Logbogen er fælles for browserne, der besøger denne app på samme computer. Den er ikke offentlig og deles ikke automatisk med andre computere.</p>
 <h2>1. Fra papirkort til database</h2>
 <p>Tegn en tabel med kolonnerne <code>id</code>, <code>pirat</code> og <code>tekst</code>. Skriv tre eventyr på hver sin række. Databasen husker disse rækker for os. <code>id</code> er et unikt nummer; to pirater må gerne have samme navn.</p>
 <p>I sidste gang kendte serveren kun den aktuelle formular. Nu gemmer vi den i en database, som serveren kan læse igen senere. Det kaldes <strong>persistens</strong>: data overlever den enkelte forespørgsel og en genstart.</p>
@@ -600,12 +712,13 @@ end
 end
 </code></pre>
 <p>En <strong>migration</strong> beskriver en ændring af databasens struktur. Denne laver tabellen. Rails tilføjer et id; <code>timestamps</code> tilføjer oprettelses- og ændringstid. Migrationen ligger klar som hjælpekode; du skal forstå felterne, ikke lære kommandoerne udenad.</p>
-<p>Start nu appen i terminalen:</p>
+<p>Vælg <strong>Terminal → Run Task → Start app → Gang 5 - min logbog</strong>. Opgaven klargør databasen og starter serveren.</p>
+<p>Hvis du vil starte manuelt i stedet, så brug terminalen inde i containeren:</p>
 <pre><code class="language-sh">cd /workspace/undervisning/05-faelles-logbog/start
-bin/rails db:prepare
-bin/rails server -b 0.0.0.0
+ruby bin/rails db:prepare
+ruby bin/rails server -b 0.0.0.0 -P /tmp/piratkode-rails.pid
 </code></pre>
-<p><code>db:prepare</code> opretter databasen og kører de migrationer, der mangler. Kommandoen sletter ikke eksisterende indlæg. Åbn eller opdater app-adressen. Listen er tom, og startversionen gemmer endnu intet.</p>
+<p><code>db:prepare</code> opretter databasen og kører de migrationer, der mangler. Kommandoen sletter ikke eksisterende indlæg. Åbn eller opdater <strong><a href="http://localhost:3000">http://localhost:3000</a></strong>. Listen er tom, og startversionen gemmer endnu intet.</p>
 <h2>3. Hent data</h2>
 <p>Åbn <code>app/controllers/entries_controller.rb</code>. Der er <strong>to</strong> linjer med <code>TRIN 1</code>. Erstat hver af dem med:</p>
 <pre><code class="language-ruby">@entries = Entry.order(id: :desc).limit(50)
@@ -628,8 +741,9 @@ bin/rails server -b 0.0.0.0
 <p><code>entry_params</code> nederst i filen accepterer kun felterne <code>pirat</code> og <code>tekst</code>. Når det lykkes, sender <code>redirect_to</code> browseren til listen. Det gør, at almindelig F5 ikke sender den samme formular igen. Hvis data er forkerte, viser Rails formularen med de indtastede værdier og en fejlbesked.</p>
 <p><strong>Kontrol:</strong> Gem filen, opdater browseren og send et eventyr. Det skal dukke op i listen, og formularen bliver tom.</p>
 <h2>5. Se ind i databasen</h2>
-<p>Åbn en ekstra terminal i samme appmappe:</p>
-<pre><code class="language-sh">bin/rails runner &#39;puts Entry.count&#39;
+<p>Åbn en ekstra terminal i containeren, og gå til appmappen:</p>
+<pre><code class="language-sh">cd /workspace/undervisning/05-faelles-logbog/start
+ruby bin/rails runner &#39;puts Entry.count&#39;
 </code></pre>
 <p>Det viser antallet af indlæg. Rails bruger SQL under overfladen. Underviseren viser en forespørgsel direkte i SQLite:</p>
 <pre><code class="language-sh">sqlite3 storage/development.sqlite3 &#39;SELECT id, pirat, tekst FROM entries;&#39;
@@ -639,7 +753,7 @@ bin/rails server -b 0.0.0.0
 <ol>
 <li>Gem to eventyr. Er det nyeste øverst?</li>
 <li>Tryk F5 flere gange. Antallet af indlæg skal være uændret.</li>
-<li>Åbn <strong>samme app-adresse</strong> på en anden maskine og log ind. Kan I læse begge indlæg? En anden holds adresse har sin egen database.</li>
+<li>Åbn <strong><a href="http://localhost:3000">http://localhost:3000</a></strong> i en anden browser på samme computer, fx Edge og Firefox. Kan I læse begge indlæg? På en anden computer peger localhost på den computer; den har sin egen database.</li>
 <li>Stop Rails-serveren med Ctrl + C og start den igen med samme kommando og mappe. Er indlæggene der stadig?</li>
 <li>Send kun mellemrum. Der skal komme en fejl og ingen ny række.</li>
 <li>Skriv <code>&lt;b&gt;Skat!&lt;/b&gt;</code> i et eventyr. Det skal vises som tekst, ikke udføres som HTML.</li>
@@ -651,15 +765,21 @@ bin/rails server -b 0.0.0.0
 <li><strong>Mellem:</strong> Sæt tekstgrænsen til 140 tegn. Ret modellen, formularens <code>maxlength</code> og fejlbeskeden, så regler og beskeder stemmer overens. Undersøg, om serveren også afviser for lang tekst.</li>
 <li><strong>Svær:</strong> Tilføj et skibsnavn via en ny migration, model, formular og <code>entry_params</code>. Få underviseren til at hjælpe med migrationskommandoen. Redigér ikke en allerede kørt migration for at ændre tabellen.</li>
 </ul>
-<h2>6. Gør appen tilgængelig med Kamal</h2>
-<p>Underviseren hjælper med at tage en kopi af jeres færdige kode, gemme den i Git og køre deployment. I ændrer selv en overskrift, som gør jeres app genkendelig.</p>
-<p>Se forløbet: <strong>kode → Docker-image → server → webadresse</strong>. Kamal starter appen og forbinder adressen med den. Databasen ligger i en separat volume, som bliver bevaret, når appens kode udskiftes.</p>
-<p>Udviklingsdatabasen flyttes ikke automatisk til den publicerede app. Skriv et nyt testeventyr på den publicerede adresse, deploy en lille tekstændring, og kontrollér, at indlægget stadig findes. Det er vores sidste persistensprøve.</p>
+<h2>6. Genstart, gem og vis frem</h2>
+<p>Giv appen en personlig overskrift. Vis den til et andet makkerpar på jeres egen computer, og forklar én kodeændring.</p>
+<ol>
+<li>Gem alle filer, og stop Rails med Ctrl + C.</li>
+<li>Vælg <strong>Dev Containers: Reopen Folder Locally</strong> via Ctrl + Shift + P. Stop kursuscontaineren i Docker Desktop.</li>
+<li>Vælg <strong>Dev Containers: Reopen in Container</strong> i VS Code igen, og start <strong>Gang 5 - min logbog</strong> via <strong>Start app</strong>.</li>
+<li>Åbn <code>http://localhost:3000</code>. Kontrollér, at overskriften og eventyrene stadig findes.</li>
+<li>Stop Rails igen, og kopiér hele kursusmappen til en backupmappe eller et USB-drev sammen med underviseren.</li>
+</ol>
+<p>Kode og databasen i <code>undervisning/05-faelles-logbog/start/storage</code> ligger i din lokale kursusmappe. Containeren indeholder værktøjerne, men er ikke det eneste sted, dine filer findes. Slet ikke kursusmappen for at genstarte appen. Git gemmer koden; SQLite-filerne er udeladt fra Git og skal med i din filbackup.</p>
 <h2>Før du går</h2>
 <p>Forklar med egne ord: Hvad kører i browseren? Hvad kører på serveren? Hvor gemmes eventyrene? Hvad er forskellen på at gemme kode i Git og at gemme data i SQLite?</p>
 <p>Du har nu bygget både en hjemmeside, et spil, en formular, dynamisk indhold og en app med database.</p>
 </section>
-<section class="kapitel" id="del-6"><h1>Ordbog og fejlfinding</h1>
+<section class="kapitel" id="del-7"><h1>Ordbog og fejlfinding</h1>
 <h2>Ordbog</h2>
 <table>
 <thead>
@@ -785,12 +905,16 @@ bin/rails server -b 0.0.0.0
 <td>Et kørende miljø baseret på et image.</td>
 </tr>
 <tr>
-<td>Volume</td>
-<td>Et lager, som kan overleve en containers udskiftning.</td>
+<td>Dev Container</td>
+<td>Et udviklingsmiljø, som VS Code åbner i en container på din computer.</td>
 </tr>
 <tr>
-<td>Deploy</td>
-<td>At udgive en version af koden til en kørende app.</td>
+<td>localhost</td>
+<td>Denne computer; samme adresse på en anden PC peger på den anden PC.</td>
+</tr>
+<tr>
+<td>Bind mount</td>
+<td>En lokal mappe, som også er tilgængelig inde i containeren.</td>
 </tr>
 <tr>
 <td>Git-commit</td>
@@ -834,8 +958,12 @@ bin/rails server -b 0.0.0.0
 <td>Gem som UTF-8, og behold <code>&lt;meta charset=&quot;utf-8&quot;&gt;</code>.</td>
 </tr>
 <tr>
-<td>Editor-login virker, men appen viser 502</td>
-<td>Start Rails i editorens terminal. Kontrollér mappe og port.</td>
+<td>localhost:3000 svarer ikke</td>
+<td>Start Docker Desktop, åbn kursusmappen i containeren, og vælg Start app. Kontrollér port 3000 i VS Codes Ports-panel.</td>
+</tr>
+<tr>
+<td>Reopen in Container mangler</td>
+<td>Installér Microsofts Dev Containers-udvidelse, og åbn hele kursusmappen.</td>
 </tr>
 <tr>
 <td>Address already in use</td>
@@ -843,7 +971,7 @@ bin/rails server -b 0.0.0.0
 </tr>
 <tr>
 <td>Blocked host</td>
-<td>Underviseren kontrollerer APP_HOST og proxyens Host-header.</td>
+<td>Brug <a href="http://localhost:3000">http://localhost:3000</a> på din egen computer.</td>
 </tr>
 <tr>
 <td>Rails viser en syntax error</td>
@@ -851,7 +979,7 @@ bin/rails server -b 0.0.0.0
 </tr>
 <tr>
 <td>Databasetabellen mangler</td>
-<td>Kør <code>bin/rails db:prepare</code> fra den rigtige appmappe.</td>
+<td>Kør <code>ruby bin/rails db:prepare</code> fra den rigtige appmappe.</td>
 </tr>
 <tr>
 <td>Startversionen af gang 5 gemmer ikke</td>
@@ -859,11 +987,11 @@ bin/rails server -b 0.0.0.0
 </tr>
 <tr>
 <td>Makkeren ser ikke mit indlæg</td>
-<td>Brug samme app-adresse og genindlæs. Det er ikke en live-chat.</td>
+<td>Brug to browsere på samme computer, og genindlæs. Appen deles ikke mellem computere.</td>
 </tr>
 <tr>
-<td>Produktionsdata mangler efter deploy</td>
-<td>Underviseren kontrollerer volume-navn og DATABASE_PATH. Opret ikke en ny volume ved hvert deploy.</td>
+<td>Indlæggene ser ud til at være væk</td>
+<td>Kontrollér, at du bruger samme kursusmappe og start/facit-app som før. De har hver sin database.</td>
 </tr>
 </tbody></table>
 <h2>Tre gode fejlvaner</h2>
