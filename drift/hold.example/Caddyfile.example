@@ -1,0 +1,8 @@
+# Til Caddy på VÆRTSMASKINEN. Flet med eksisterende konfiguration.
+# DNS skal pege på serveren. HTTPS kræver fungerende adgang udefra.
+kode-hold01.example.dk {
+    reverse_proxy 127.0.0.1:18080
+}
+app-hold01.example.dk {
+    reverse_proxy 127.0.0.1:18081
+}

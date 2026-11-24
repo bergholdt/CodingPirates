@@ -1,0 +1,15 @@
+.git
+.agents
+.codex
+tmp
+output
+drift/hold
+drift/deploy
+**/log/*
+**/tmp/*
+**/storage/*
+**/.kamal
+**/.env*
+node_modules
+.idea
+scripts

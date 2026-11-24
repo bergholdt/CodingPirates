@@ -1,0 +1,10 @@
+<h1>Flaskepost til serveren</h1>
+<p>Brug et opdigtet piratnavn og et opdigtet eventyr.</p>
+<% if @fejl %><p role="alert"><%= @fejl %></p><% end %>
+<%= form_with url: flaskepost_path, method: :post, local: true do |form| %>
+  <%= form.label :pirat, "Piratnavn" %>
+  <%= form.text_field :pirat, value: @pirat, required: true, maxlength: 24 %>
+  <%= form.label :tekst, "Dit eventyr" %>
+  <%= form.text_area :tekst, value: @tekst, required: true, maxlength: 280 %>
+  <%= form.submit "Send flaskepost" %>
+<% end %>

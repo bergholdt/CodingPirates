@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Min piratlogbog</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>Min piratlogbog</h1>
+  <p>Notér opdigtede eventyr. Denne logbog findes kun i din browser.</p>
+  <form id="log-form">
+    <label for="pirat">Piratnavn</label>
+    <input id="pirat" name="pirat" maxlength="24" required>
+    <label for="tekst">Hvad skete der på rejsen?</label>
+    <textarea id="tekst" name="tekst" maxlength="280" required></textarea>
+    <button type="submit">Gem eventyr</button>
+  </form>
+  <p id="status" role="status"></p>
+  <h2>Dine eventyr</h2>
+  <ul id="liste"></ul>
+  <button id="slet" type="button">Slet min lokale logbog</button>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

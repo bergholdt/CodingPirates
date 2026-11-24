@@ -1,0 +1,77 @@
+{
+  "name": "piratkode-${HOLD:?Angiv HOLD i .env}",
+  "services": {
+    "vaerksted": {
+      "image": "piratkode-workshop:2026-11",
+      "init": true,
+      "restart": "unless-stopped",
+      "env_file": [
+        ".env"
+      ],
+      "environment": {
+        "APP_HOST": "${APP_HOST:?Angiv APP_HOST i .env}",
+        "COURSE_USER": "${HOLD:?Angiv HOLD i .env}"
+      },
+      "volumes": [
+        "arbejde:/workspace"
+      ],
+      "networks": [
+        "holdnet"
+      ],
+      "mem_limit": "1536m",
+      "cpus": 1.5,
+      "pids_limit": 256,
+      "cap_drop": [
+        "ALL"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ]
+    },
+    "adgang": {
+      "image": "nginx:1.28-alpine",
+      "user": "101:101",
+      "restart": "unless-stopped",
+      "entrypoint": [
+        "nginx",
+        "-g",
+        "daemon off;"
+      ],
+      "depends_on": [
+        "vaerksted"
+      ],
+      "ports": [
+        "127.0.0.1:${EDITOR_PORT:?Angiv EDITOR_PORT i .env}:8080",
+        "127.0.0.1:${APP_PORT:?Angiv APP_PORT i .env}:3000"
+      ],
+      "volumes": [
+        "./nginx.conf:/etc/nginx/nginx.conf:ro"
+      ],
+      "networks": [
+        "holdnet",
+        "adgangsnet"
+      ],
+      "read_only": true,
+      "tmpfs": [
+        "/tmp"
+      ],
+      "cap_drop": [
+        "ALL"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "mem_limit": "64m",
+      "pids_limit": 64
+    }
+  },
+  "volumes": {
+    "arbejde": {}
+  },
+  "networks": {
+    "holdnet": {
+      "internal": true
+    },
+    "adgangsnet": {}
+  }
+}

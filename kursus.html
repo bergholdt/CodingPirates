@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="da"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Piratkode - elevhæfte</title><style>
+*{box-sizing:border-box}body{margin:0;background:#eaf0f2;color:#182f3d;font:17px/1.6 Arial,sans-serif}main{max-width:930px;margin:30px auto;background:white;padding:48px}h1,h2,h3{line-height:1.2;color:#126b70}h1{font-size:32px}h2{margin-top:32px;font-size:23px}h3{font-size:19px}a{color:#11636c}p,li{overflow-wrap:anywhere}pre{background:#f1f4f5;border-left:3px solid #126b70;padding:14px;white-space:pre-wrap;overflow-wrap:anywhere;font:13px/1.5 Consolas,monospace}code{font-family:Consolas,monospace}p code,li code,td code{background:#f1f4f5;padding:1px 3px}table{width:100%;border-collapse:collapse;font-size:15px}th,td{padding:8px;text-align:left;vertical-align:top;border-bottom:1px solid #ccd8dc}th{background:#edf4f3}img{max-width:100%;height:auto}.kapitel{padding-top:30px;margin-top:40px;border-top:3px solid #d6e4e4}.forside small{text-transform:uppercase;letter-spacing:2px;color:#126b70}.forside h1{font-size:48px;color:#182f3d}.forside nav li{padding:4px}.printtip{background:#fff4d3;padding:14px}.noter{border-bottom:1px solid #bacbd1;height:42px}
+@page{size:A4;margin:17mm 17mm 18mm} @media print{body{background:white;font-size:10.5pt;line-height:1.45}main{margin:0;padding:0;max-width:none}.forside{break-after:page}.forside h1{font-size:36pt}.kapitel{border:0;margin:0;padding:0;break-before:page}h1{font-size:24pt}h2{font-size:16pt;margin-top:20px}h3{font-size:13pt}h1,h2,h3{break-after:avoid}pre{font-size:9pt;line-height:1.4;break-inside:avoid;padding:10px}table{font-size:9.5pt}tr{break-inside:avoid}thead{display:table-header-group}a{color:inherit;text-decoration:none}p{orphans:3;widows:3}.printtip{display:none}img{max-height:160px}li{break-inside:avoid}}
+</style></head><body><main>
+<header class="forside"><small>Coding Pirates · 5 gange à 2 timer</small><h1>Piratkode</h1><h2>Fra skattekiste til Rails</h2>
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="160" viewBox="0 0 260 160" role="img" aria-label="En skattekiste med guldmønter"><g stroke="#182f3d" stroke-width="3"><rect x="20" y="60" width="160" height="85" rx="10" fill="#f7e7c2"/><rect x="20" y="30" width="160" height="50" rx="15" fill="#e5ad35"/><path d="M50 30v115M150 30v115"/><rect x="86" y="65" width="28" height="34" fill="white"/><circle cx="100" cy="80" r="4"/><g fill="#e5ad35"><circle cx="210" cy="130" r="13"/><circle cx="235" cy="140" r="11"/><circle cx="215" cy="100" r="11"/></g></g></svg>
+<p>Byg et spil. Giv piraten et navn. Gem jeres eventyr.<br>Til sidst deler I en rigtig webapp med en database.</p>
+<nav><ol><li><a href="#del-0">Kom i gang med editoren</a></li><li><a href="#del-1">1. Skattekisten</a></li><li><a href="#del-2">2. Piratprofilen</a></li><li><a href="#del-3">3. Den lokale logbog</a></li><li><a href="#del-4">4. Flaskepost med Rails</a></li><li><a href="#del-5">5. Den fælles logbog</a></li><li><a href="#del-6">Ordbog og fejlfinding</a></li></ol></nav>
+<p class="printtip">Print med Ctrl + P: A4, 100 %, uden browserens ekstra sidehoved. Kodefelter og illustrationer fungerer også i sort-hvid.</p>
+<p><strong>Mit piratnavn:</strong></p><div class="noter"></div><p><strong>Min makker:</strong></p><div class="noter"></div>
+</header><section class="kapitel" id="del-0"><h1>Kom i gang med Visual Studio Code</h1>
+<p>Vi anbefaler <strong>Visual Studio Code (VS Code)</strong>. Det er en editor, der farver HTML, CSS og JavaScript og hjælper med afsluttende tags og kodeforslag. Du behøver ingen udvidelser, konto eller AI-assistent til kurset.</p>
+<h2>Før første møde</h2>
+<p>Underviseren eller en voksen hjælper med installation fra <a href="https://code.visualstudio.com/download">den officielle downloadside</a>. Vælg Visual Studio Code, ikke det større Visual Studio.</p>
+<p>Den aktuelle Windows-udgave kræver Windows 10 eller 11, 64-bit. Tjek <a href="https://code.visualstudio.com/docs/supporting/requirements">systemkrav</a> på forhånd. På en ældre maskine, som ikke opfylder kravene, kan eleven bruge Notesblok og samme kursusfiler. Skolens eller foreningens regler for installation gælder stadig.</p>
+<h2>De første fem minutter</h2>
+<ol>
+<li>Udpak repoets ZIP-fil i Stifinder. Kopiér dagens <code>start</code>-mappe til din egen mappe, fx <code>Piratkode/gang-1</code>.</li>
+<li>Åbn VS Code. Vælg <strong>File → Open Folder</strong> (Filer → Åbn mappe), og vælg din arbejdsmappe. Hvis editoren spørger om tillid, så få underviseren til at bekræfte, at det er de udleverede kursusfiler.</li>
+<li>Klik på <code>index.html</code> i venstre side. Kontrollér, at der står <strong>HTML</strong> nederst, og at filen hedder <code>.html</code>, ikke <code>.html.txt</code>.</li>
+<li>Skriv en overskrift. Editorens forslag kan accepteres med Tab eller Enter og lukkes med Escape. Hvis den selv indsætter et afsluttende tag, skal du ikke skrive det én gang til.</li>
+<li>Gem med <strong>Ctrl + S</strong>. Find filen i Stifinder, og dobbeltklik på den. Se resultatet i browseren.</li>
+</ol>
+<h2>Fem nyttige genveje på Windows</h2>
+<table>
+<thead>
+<tr>
+<th>Genvej</th>
+<th>Gør dette</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Ctrl + S</td>
+<td>Gem den aktuelle fil</td>
+</tr>
+<tr>
+<td>Ctrl + Z</td>
+<td>Fortryd seneste ændring</td>
+</tr>
+<tr>
+<td>Ctrl + Space</td>
+<td>Vis kodeforslag</td>
+</tr>
+<tr>
+<td>Shift + Alt + F</td>
+<td>Formatér HTML, CSS eller JavaScript</td>
+</tr>
+<tr>
+<td>Ctrl + Shift + V</td>
+<td>Vis en Markdown-vejledning pænt</td>
+</tr>
+</tbody></table>
+<p><strong>F5 bruges i browseren</strong> til at opdatere siden. F5 i VS Code starter fejlsøgning og er ikke det samme.</p>
+<p>Brug eventuelt <strong>View → Word Wrap</strong> til lange linjer og zoom ind med Ctrl + plus. Åbn kode og browser ved siden af hinanden. Når flere filer er ændret, så gem dem alle før opdatering.</p>
+<h2>Rails i gang 4 og 5</h2>
+<p>Her bruger vi en VS Code-lignende editor direkte i browseren på underviserens server. Ruby og Rails er allerede installeret dér. Åbn den udleverede editoradresse og log ind med holdets password. Find filer i venstre side og terminalen via Terminal → New Terminal. Du skal ikke installere Ruby, Docker eller Rails på Windows.</p>
+<p>Der er to faner: editorens adresse og appens adresse. Appen viser resultatet, når Rails-serveren er startet i terminalen. Ctrl + S gemmer kode på serveren; F5 i app-fanen opdaterer resultatet. Brug de udleverede app-adresser frem for editorens automatiske port-links.</p>
+<p>Den lokale VS Code og browsereditoren har ikke automatisk de samme filer. De første tre gange gemmer du på din PC; de sidste to i holdets workspace på serveren. Bed underviseren om en kodekopi efter forløbet.</p>
+<p>Kilde: <a href="https://code.visualstudio.com/docs/languages/html">VS Codes indbyggede HTML-hjælp</a>.</p>
+</section>
+<section class="kapitel" id="del-1"><h1>Gang 1: Skattekisten</h1>
+<p><strong>Mission:</strong> Byg et spil, hvor et klik finder guld. Du vinder ved mindst 20 guld.</p>
+<p><strong>Du lærer:</strong> at HTML giver indhold, CSS giver udseende, og JavaScript giver handling. Du møder en variabel, en funktion og en betingelse.</p>
+<p><strong>Filer:</strong> Kopiér <code>start</code> til din egen mappe, og åbn mappen i VS Code. Åbn <code>index.html</code> i browseren. Se <a href="#del-0">editorhjælpen</a>. Det færdige spil ligger i <code>facit/index.html</code>. Den <a href="docs/print/01-piratens-skat.pdf">oprindelige PDF</a> kan også bruges til denne gang.</p>
+<h2>Plan: 120 minutter</h2>
+<table>
+<thead>
+<tr>
+<th>Minutter</th>
+<th>Aktivitet</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0-10</td>
+<td>Spil underviserens eksempel. Gæt, hvordan det virker.</td>
+</tr>
+<tr>
+<td>10-20</td>
+<td>Åbn VS Code, find filen, og lær gem → opdater.</td>
+</tr>
+<tr>
+<td>20-40</td>
+<td>Byg indhold med HTML.</td>
+</tr>
+<tr>
+<td>40-55</td>
+<td>Giv spillet farver med CSS.</td>
+</tr>
+<tr>
+<td>55-65</td>
+<td>Pause væk fra skærmen.</td>
+</tr>
+<tr>
+<td>65-90</td>
+<td>Få knappen til at finde guld med JavaScript.</td>
+</tr>
+<tr>
+<td>90-110</td>
+<td>Tilføj sejr, afprøv med en makker og løs en bonus.</td>
+</tr>
+<tr>
+<td>110-120</td>
+<td>Vis spillet og forklar én linje kode.</td>
+</tr>
+</tbody></table>
+<h2>1. HTML: Byg indholdet</h2>
+<p>I <code>index.html</code> finder du kommentaren <code>TRIN 1</code>. Erstat den med:</p>
+<pre><code class="language-html">&lt;h1&gt;Piratens skat&lt;/h1&gt;
+&lt;p&gt;Find mindst 20 guld for at vinde!&lt;/p&gt;
+&lt;button id=&quot;kiste&quot;&gt;Åbn skattekisten&lt;/button&gt;
+&lt;p&gt;Dit guld: &lt;span id=&quot;guld&quot;&gt;0&lt;/span&gt;&lt;/p&gt;
+&lt;p id=&quot;besked&quot;&gt;Er du klar, kaptajn?&lt;/p&gt;
+</code></pre>
+<p>Gem med <strong>Ctrl + S</strong> i editoren. Skift til browseren og tryk <strong>F5</strong>. Knappen vises, men gør endnu ingenting.</p>
+<p>Et <strong>tag</strong> fortæller, hvad noget er. <code>&lt;h1&gt;</code> starter en stor overskrift; <code>&lt;/h1&gt;</code> afslutter den. <code>&lt;p&gt;</code> er et afsnit. Et <code>id</code> er et unikt navneskilt. JavaScript skal bruge <code>kiste</code>, <code>guld</code> og <code>besked</code> senere, så behold de navne.</p>
+<p><strong>Miniopgave:</strong> Giv overskriften et andet navn. Hvad ændrer <code>&lt;title&gt;</code> i toppen af filen? Prøv og kig på browserens faneblad.</p>
+<h2>2. CSS: Giv spillet dit look</h2>
+<p>Erstat kommentaren <code>TRIN 2</code> inde i <code>&lt;style&gt;</code> med:</p>
+<pre><code class="language-css">body {
+  background: #14213d;
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 40px;
+}
+h1 {
+  color: gold;
+  font-size: 42px;
+}
+p {
+  font-size: 22px;
+}
+button {
+  background: gold;
+  color: black;
+  font-size: 24px;
+  padding: 20px;
+  border: 4px solid orange;
+  border-radius: 12px;
+  cursor: pointer;
+}
+button:hover {
+  background: orange;
+}
+</code></pre>
+<p><code>h1</code> vælger overskrifter. <code>{ }</code> holder indstillingerne samlet. <code>color: gold;</code> giver tekstfarven guld. Kolon og semikolon er en del af sproget.</p>
+<p><strong>Kontrol:</strong> Siden er mørk, teksten er lys, og knappen skifter farve under musen.</p>
+<p><strong>Designlaboratorium:</strong> Skift én værdi ad gangen. Prøv <code>border-radius: 0px</code>, <code>font-size: 32px</code> eller en anden baggrund. Bevar en tekstfarve, som er let at læse. Vis makkeren, hvilken regel du ændrede.</p>
+<h2>3. JavaScript: Få noget til at ske</h2>
+<p>Erstat kommentaren <code>TRIN 3</code> inde i <code>&lt;script&gt;</code> med:</p>
+<pre><code class="language-javascript">var guld = 0;
+var knap = document.getElementById(&quot;kiste&quot;);
+var guldtal = document.getElementById(&quot;guld&quot;);
+var besked = document.getElementById(&quot;besked&quot;);
+
+knap.onclick = function() {
+  var fund = Math.floor(Math.random() * 3) + 1;
+  guld = guld + fund;
+  guldtal.textContent = guld;
+  besked.textContent = &quot;Du fandt &quot; + fund + &quot; guld!&quot;;
+};
+</code></pre>
+<p><strong>Kontrol:</strong> Ét klik giver 1, 2 eller 3 guld, og tallet på siden ændrer sig.</p>
+<p>En <strong>variabel</strong> husker en værdi. <code>guld = guld + fund</code> tager den gamle værdi, lægger fundet til og gemmer det nye tal. <code>textContent</code> ændrer teksten i et HTML-element. En <strong>funktion</strong> samler de instruktioner, som skal køres ved et klik.</p>
+<p>Linjen med <code>Math.random()</code> vælger et tilfældigt antal. Du behøver ikke lære hele regnestykket udenad. Prøv at ændre 3 til 6, og undersøg forskellen.</p>
+<h2>4. Tilføj en sejr</h2>
+<p>Indsæt dette <strong>inde i klikfunktionen</strong>, lige efter linjen der begynder med <code>besked.textContent</code>, og før den afsluttende <code>};</code>:</p>
+<pre><code class="language-javascript">if (guld &gt;= 20) {
+  besked.textContent = &quot;Du vandt, kaptajn!&quot;;
+  knap.textContent = &quot;Skatten er din!&quot;;
+  knap.disabled = true;
+}
+</code></pre>
+<p><code>if</code> betyder <em>hvis</em>. <code>&gt;=</code> betyder <em>større end eller lig med</em>. Det er nødvendigt, fordi spilleren kan hoppe fra 19 til 22 guld. <code>disabled</code> slår knappen fra. F5 starter et nyt spil med 0 guld.</p>
+<h2>Makkerprøven</h2>
+<ol>
+<li>Start på 0. Klik én gang. Fik du mellem 1 og 3 guld?</li>
+<li>Spil til mindst 20. Stopper knappen, og står der, at du vandt?</li>
+<li>Opdater siden. Er guldet tilbage på 0?</li>
+<li>Skift tastatur. Lad makkeren ændre målet til 50 både i HTML-teksten og JavaScript.</li>
+</ol>
+<h2>Bonusmissioner</h2>
+<ul>
+<li><strong>Let:</strong> Gør det til et rumspil med krystaller. Ret overskrift, knap og beskeder.</li>
+<li><strong>Mellem:</strong> Tæl klik i en ny variabel. Vis dem i et ekstra <code>&lt;span id=&quot;klik&quot;&gt;</code>.</li>
+<li><strong>Svær:</strong> Tilføj en ny knap, der starter forfra uden F5. Den skal nulstille guldet, teksten og <code>disabled</code>.</li>
+</ul>
+<p><strong>Hint til svær:</strong> Find startknappen med <code>getElementById</code>. I dens klikfunktion sættes <code>guld = 0</code>, guldtallet opdateres, og <code>knap.disabled = false</code>.</p>
+<h2>Før du går</h2>
+<p>Vis, hvor HTML, CSS og JavaScript ligger. Forklar: Hvorfor forsvinder guldet ved F5? Skriv en sætning om, hvad du vil lave om næste gang. Gem mappen; den er dit første spil.</p>
+</section>
+<section class="kapitel" id="del-2"><h1>Gang 2: Piratprofilen</h1>
+<p><strong>Mission:</strong> Lav et piratpas med navn og rolle. Siden skal reagere på det, du skriver.</p>
+<p><strong>Du lærer:</strong> formularer, <code>label</code>, <code>input</code>, <code>select</code>, <code>submit</code>, <code>value</code>, events og DOM. Du deler koden i HTML, CSS og JavaScript-filer.</p>
+<p><strong>Start:</strong> Kopiér denne gangs <code>start</code>-mappe til en ny arbejdsmappe. Den indeholder et færdigt layout og en formular. Dit spil fra gang 1 bliver liggende i sin egen mappe. Åbn <code>index.html</code> i browseren og de tre filer i VS Code. Se <code>facit</code>, hvis du får brug for et fungerende eksempel.</p>
+<h2>Plan: 120 minutter</h2>
+<table>
+<thead>
+<tr>
+<th>Minutter</th>
+<th>Aktivitet</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0-10</td>
+<td>Vis et spil fra sidste gang. Find en variabel og en betingelse.</td>
+</tr>
+<tr>
+<td>10-25</td>
+<td>Undersøg de tre filer og deres forbindelser.</td>
+</tr>
+<tr>
+<td>25-45</td>
+<td>Udforsk og ændr formularens HTML.</td>
+</tr>
+<tr>
+<td>45-55</td>
+<td>Find elementerne i JavaScript.</td>
+</tr>
+<tr>
+<td>55-65</td>
+<td>Pause.</td>
+</tr>
+<tr>
+<td>65-85</td>
+<td>Fang submit og byg piratpasset.</td>
+</tr>
+<tr>
+<td>85-105</td>
+<td>Tilføj live-tekst og makkerprøve.</td>
+</tr>
+<tr>
+<td>105-115</td>
+<td>Bonusmission og eget design.</td>
+</tr>
+<tr>
+<td>115-120</td>
+<td>Forklar forskellen på value og textContent.</td>
+</tr>
+</tbody></table>
+<h2>1. Tre filer, én hjemmeside</h2>
+<p>Åbn <code>index.html</code>, og find disse forbindelser:</p>
+<pre><code class="language-html">&lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;script src=&quot;app.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>HTML henter udseendet fra <code>style.css</code> og handlingerne fra <code>app.js</code>. Derfor skal alle tre filer blive i samme mappe. <code>&lt;script&gt;</code> står nederst, så HTML-elementerne er læst, før JavaScript leder efter dem.</p>
+<p><strong>Prøv:</strong> Skift baggrundsfarven i <code>style.css</code>. Gem filen og opdater browseren. Der skal ikke stå <code>&lt;style&gt;</code> i en CSS-fil eller <code>&lt;script&gt;</code> i en JavaScript-fil.</p>
+<h2>2. Undersøg formularen</h2>
+<p>Find disse linjer i <code>index.html</code>:</p>
+<pre><code class="language-html">&lt;label for=&quot;navn&quot;&gt;Piratnavn&lt;/label&gt;
+&lt;input id=&quot;navn&quot; name=&quot;pirat&quot; maxlength=&quot;24&quot; required&gt;
+</code></pre>
+<p><code>label</code> er feltets beskrivelse. <code>for=&quot;navn&quot;</code> peger på <code>id=&quot;navn&quot;</code>. Klik på teksten <em>Piratnavn</em>: markøren hopper ind i feltet. <code>required</code> betyder, at browseren kræver indhold; <code>maxlength</code> begrænser længden. <code>name</code> er navnet, serveren senere kan bruge til at modtage feltet. <code>id</code> og <code>name</code> har forskellige job.</p>
+<p>Dropdown-menuen er et <code>&lt;select&gt;</code> med flere <code>&lt;option&gt;</code>. Knappen har <code>type=&quot;submit&quot;</code>, som sender formularen. Man kan også sende med Enter fra navnefeltet.</p>
+<p><strong>Prøv:</strong> Tilføj denne mulighed inde i <code>&lt;select&gt;</code>:</p>
+<pre><code class="language-html">&lt;option value=&quot;Skibskok&quot;&gt;Skibskok&lt;/option&gt;
+</code></pre>
+<p><strong>Stop og tænk:</strong> Hvad sker der, når du prøver at sende formularen uden navn? Hvad sker der med siden, hvis du sender et gyldigt navn, før vi har skrevet JavaScript?</p>
+<h2>3. Find elementerne</h2>
+<p>Skriv i <code>app.js</code>, under eller i stedet for kommentarerne:</p>
+<pre><code class="language-javascript">var formular = document.getElementById(&quot;profil-form&quot;);
+var navn = document.getElementById(&quot;navn&quot;);
+var rolle = document.getElementById(&quot;rolle&quot;);
+var preview = document.getElementById(&quot;preview&quot;);
+var resultat = document.getElementById(&quot;resultat&quot;);
+</code></pre>
+<p><strong>DOM</strong> er browserens model af sidens elementer. <code>getElementById</code> finder et element i modellen. Det er samme teknik, som fandt skattekisteknappen.</p>
+<h2>4. Reagér på formularen</h2>
+<p>Skriv dette under variablerne:</p>
+<pre><code class="language-javascript">formular.onsubmit = function(event) {
+  event.preventDefault();
+  var piratnavn = navn.value.trim();
+  if (piratnavn === &quot;&quot;) {
+    resultat.textContent = &quot;Skriv et piratnavn, ikke kun mellemrum.&quot;;
+    return;
+  }
+  resultat.textContent = piratnavn + &quot; er nu &quot; + rolle.value + &quot;!&quot;;
+};
+</code></pre>
+<p><code>event.preventDefault()</code> stopper browserens normale afsendelse, så vi kan opdatere siden med JavaScript. <code>value</code> er det, spilleren har skrevet eller valgt. <code>trim()</code> fjerner mellemrum i begyndelsen og slutningen. <code>return</code> stopper funktionen, når input er forkert.</p>
+<p><strong>Kontrol:</strong> Skriv <em>Kaptajn Krabbe</em>, vælg <em>Navigatør</em>, og send. Nu vises navnet og rollen i kortet uden en ny sideindlæsning.</p>
+<h2>5. Gør kortet levende</h2>
+<p>Tilføj efter submit-funktionen:</p>
+<pre><code class="language-javascript">navn.oninput = function() {
+  preview.textContent = &quot;Hej, &quot; + navn.value + &quot;!&quot;;
+};
+</code></pre>
+<p><code>input</code>-hændelsen sker, når feltet ændres. Det føles dynamisk, fordi browseren ændrer siden med det samme. Denne kode sender stadig ingen data til en server.</p>
+<h2>Makkerprøven</h2>
+<ul>
+<li>Klik på en label og brug Tab til at hoppe gennem felterne.</li>
+<li>Send et tomt navn. Browseren skal stoppe dig.</li>
+<li>Prøv kun mellemrum. JavaScript skal vise en besked.</li>
+<li>Skriv <code>&lt;b&gt;Pirat&lt;/b&gt;</code> som navn. Tegnene skal vises som tekst, ikke som fed HTML. Derfor bruger vi <code>textContent</code> til brugerens tekst.</li>
+<li>Tryk F5. Profilen er ikke gemt af vores kode. Browseren kan dog selv genudfylde nogle formularfelter.</li>
+</ul>
+<h2>Bonusmissioner</h2>
+<ul>
+<li><strong>Let:</strong> Lav dit eget design på profilkortet i <code>.kort</code> i CSS.</li>
+<li><strong>Mellem:</strong> Tilføj et skibsnavn med <code>label</code> og <code>input</code>. Find feltet i JavaScript og brug værdien i resultatet.</li>
+<li><strong>Svær:</strong> Tilføj en farvevælger (<code>type=&quot;color&quot;</code>), og brug dens <code>oninput</code> til at ændre kortets kantfarve. Hint: find kortet med et id, og brug <code>kort.style.borderColor = farve.value</code>.</li>
+</ul>
+<h2>Før du går</h2>
+<p>Forklar, hvad der er forskellen på at <strong>skrive i et felt</strong> og at <strong>sende en formular</strong>. Peg på input og output i din kode. Næste gang lærer du at gemme data, når siden genindlæses.</p>
+</section>
+<section class="kapitel" id="del-3"><h1>Gang 3: Den lokale logbog</h1>
+<p><strong>Mission:</strong> Byg en liste over pirat-eventyr, der stadig findes efter F5.</p>
+<p><strong>Du lærer:</strong> objekter, arrays, <code>push</code>, <code>forEach</code>, nye HTML-elementer, JSON og <code>localStorage</code>. Du undersøger forskellen på at vise data og gemme data.</p>
+<p><strong>Start:</strong> Kopiér denne gangs <code>start</code>-mappe. Formular og CSS er klar. I <code>app.js</code> er felterne allerede fundet. Hjælpekode til indlæsning, validering og sletning er udleveret, så du kan fokusere på de tre markerede trin. Startversionen gemmer endnu intet.</p>
+<h2>Plan: 120 minutter</h2>
+<table>
+<thead>
+<tr>
+<th>Minutter</th>
+<th>Aktivitet</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0-10</td>
+<td>Hvorfor forsvandt vores data? Gæt, hvor de kan gemmes.</td>
+</tr>
+<tr>
+<td>10-25</td>
+<td>Tegn et objekt og en liste på papir.</td>
+</tr>
+<tr>
+<td>25-45</td>
+<td>Vis en liste med forEach og createElement.</td>
+</tr>
+<tr>
+<td>45-55</td>
+<td>Tilføj indlæg fra formularen.</td>
+</tr>
+<tr>
+<td>55-65</td>
+<td>Pause.</td>
+</tr>
+<tr>
+<td>65-85</td>
+<td>Gem JSON og prøv F5.</td>
+</tr>
+<tr>
+<td>85-100</td>
+<td>Test genåbning, sletning og anden browser.</td>
+</tr>
+<tr>
+<td>100-115</td>
+<td>Bonusmission og design.</td>
+</tr>
+<tr>
+<td>115-120</td>
+<td>Forklar, hvorfor makkeren ikke ser dine indlæg.</td>
+</tr>
+</tbody></table>
+<h2>1. Ét objekt, mange indlæg</h2>
+<p>Et objekt samler data om én ting:</p>
+<pre><code class="language-javascript">var eventyr = { pirat: &quot;Kaptajn Krabbe&quot;, tekst: &quot;Vi fandt en ø!&quot; };
+</code></pre>
+<p>Et array er en liste. I vores kode hedder listen <code>indlaeg</code>:</p>
+<pre><code class="language-javascript">var indlaeg = [];
+</code></pre>
+<p><code>[]</code> starter en tom liste. Vi kan tilføje et objekt med <code>indlaeg.push(eventyr)</code>.</p>
+<p><strong>Papirmission:</strong> Tegn tre kort med felterne <code>pirat</code> og <code>tekst</code>. Læg dem i en række. Ét kort er et objekt; hele rækken er et array. Der er ikke brug for at skrive papirøvelsens <code>eventyr</code> ind i programmet.</p>
+<h2>2. Vis listen på siden</h2>
+<p>Find funktionen <code>visIndlaeg</code> i <code>app.js</code>. Erstat kun kommentaren <code>TRIN 1</code> mellem dens klammer med:</p>
+<pre><code class="language-javascript">liste.textContent = &quot;&quot;;
+indlaeg.forEach(function(indlaeg) {
+  var punkt = document.createElement(&quot;li&quot;);
+  punkt.textContent = indlaeg.pirat + &quot;: &quot; + indlaeg.tekst;
+  liste.appendChild(punkt);
+});
+</code></pre>
+<p>Den første linje rydder den viste liste, så vi ikke får dubletter. <code>forEach</code> kører funktionen én gang for hvert indlæg. <code>createElement(&quot;li&quot;)</code> laver et nyt listepunkt. <code>appendChild</code> sætter det ind i <code>&lt;ul id=&quot;liste&quot;&gt;</code>.</p>
+<p>Her hedder det enkelte indlæg <code>indlaeg</code> inde i funktionen. Det er en lokal variabel; udenfor er <code>indlaeg</code> hele listen. Prøv at læse koden højt med ordene <em>listen</em> og <em>dette indlæg</em>.</p>
+<h2>3. Lav et objekt fra formularen</h2>
+<p>Find <code>TRIN 2</code> inde i <code>formular.onsubmit</code>, og erstat kommentaren med:</p>
+<pre><code class="language-javascript">var nytIndlaeg = {
+  pirat: pirat.value.trim(),
+  tekst: tekst.value.trim()
+};
+indlaeg.push(nytIndlaeg);
+</code></pre>
+<p>De næste linjer i startkoden kalder allerede <code>visIndlaeg()</code> og <code>gemIndlaeg()</code>. De skal blive stående. Bagefter tømmes tekstfeltet, mens piratnavnet bliver stående.</p>
+<p><strong>Kontrol:</strong> Skriv to eventyr. Begge skal stå i listen. F5 mister dem endnu, fordi vi mangler den næste del.</p>
+<h2>4. Gem i browseren</h2>
+<p>Find <code>TRIN 3</code> inde i <code>gemIndlaeg</code>. Erstat kommentaren <strong>og linjen med beskeden om startversionen</strong> med:</p>
+<pre><code class="language-javascript">localStorage.setItem(noegle, JSON.stringify(indlaeg));
+statusfelt.textContent = &quot;Gemt i denne browser.&quot;;
+</code></pre>
+<p><code>localStorage</code> er browserens lille lager. Det gemmer tekst. <code>JSON.stringify</code> omdanner listen til en tekst, der kan genskabes senere. <code>noegle</code> er navnet på vores lagerplads; det står øverst i filen. Vi bruger én særlig nøgle og sletter aldrig andre hjemmesiders data.</p>
+<p>Den udleverede <code>hentIndlaeg()</code> gør det omvendte: den læser med <code>getItem</code> og genskaber listen med <code>JSON.parse</code>. Nederst i filen bliver indlæggene hentet og vist, når siden åbner.</p>
+<p><strong>Kontrol:</strong> Tilføj et nyt eventyr. Tryk F5. Det skal stadig være der.</p>
+<h2>5. Undersøg lagringen</h2>
+<ol>
+<li>Luk fanen, og åbn præcis den samme fil eller webadresse i samme browser. Er teksten der?</li>
+<li>Åbn siden i en anden browser. Den browser har sit eget lager.</li>
+<li>Åbn siden på makkerens maskine. Der ligger ikke automatisk en kopi af din logbog.</li>
+<li>Tryk <em>Slet min lokale logbog</em>, vælg først Annuller og bagefter OK. Opdater siden og se forskellen.</li>
+</ol>
+<p><strong>Vigtigt:</strong> Lokal lagring er ikke vores fælles database. Privat browsing, browseroprydning og flytning af filen kan ændre eller fjerne lagringen. Gem ikke noget vigtigt eller personligt her.</p>
+<p><strong>Hvis du får beskeden &quot;Kan ikke gemme&quot;:</strong> Spørg underviseren. Browseren kan blokere lagring fra en dobbeltklikket fil. Brug den udleverede HTTPS-adresse til samme eksempel. Skifter du adresse, flytter de gamle lokale data ikke automatisk med.</p>
+<h2>Hjælpekoden</h2>
+<p><code>try</code> forsøger noget; <code>catch</code> fanger en fejl og viser en forståelig besked. Den udleverede kode tjekker også formen på data, begrænser listen til 100 indlæg og spørger før sletning. Du behøver ikke skrive den del selv.</p>
+<p>Vi bruger <code>textContent</code> frem for <code>innerHTML</code>, fordi indlæg skal være tekst. Prøv at gemme <code>&lt;h1&gt;Skat!&lt;/h1&gt;</code> som eventyr; det må ikke blive til en rigtig overskrift.</p>
+<h2>Bonusmissioner</h2>
+<ul>
+<li><strong>Let:</strong> Vis antallet af indlæg. Hint: <code>indlaeg.length</code> og et ekstra tekstfelt.</li>
+<li><strong>Mellem:</strong> Vis nyeste indlæg først. Undersøg <code>unshift</code> som alternativ til <code>push</code>.</li>
+<li><strong>Svær:</strong> Giv hvert indlæg et tidspunkt med <code>new Date().toLocaleString()</code>. Tilføj en ny egenskab i objektet, og vis den. Gamle indlæg mangler egenskaben, så vælg en reserveværdi.</li>
+</ul>
+<h2>Før du går</h2>
+<p>Tegn tre kasser: JavaScript-hukommelse, browserens lager og server. Placér dagens data i de rigtige kasser. Hvad mangler vi, før alle pirater kan læse den samme logbog?</p>
+</section>
+<section class="kapitel" id="del-4"><h1>Gang 4: Flaskepost med Ruby og Rails</h1>
+<p><strong>Mission:</strong> Send et eventyr til en server, og få en rigtig HTML-side tilbage.</p>
+<p><strong>Du lærer:</strong> lidt Ruby, HTTP, GET, POST, routes, controller og view. Vi bruger Rails til at samle delene. Denne gang viser vi teksten; næste gang gemmer vi den.</p>
+<p><strong>Start:</strong> Underviseren giver jer to adresser og et holdpassword: én til browsereditoren og én til jeres app. Browsereditoren ligner VS Code. Der er allerede installeret Ruby, Rails og SQLite på serveren. I skal ikke installere dem på jeres Windows-maskine.</p>
+<h2>Plan: 120 minutter</h2>
+<table>
+<thead>
+<tr>
+<th>Minutter</th>
+<th>Aktivitet</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0-10</td>
+<td>Genbesøg den lokale logbog. Hvorfor kan andre ikke se den?</td>
+</tr>
+<tr>
+<td>10-25</td>
+<td>Åbn fjerneditoren, start appen, og find tre vigtige filer.</td>
+</tr>
+<tr>
+<td>25-40</td>
+<td>Ruby-laboratorium i terminalen.</td>
+</tr>
+<tr>
+<td>40-55</td>
+<td>Følg en formular fra browser gennem en route til en controller.</td>
+</tr>
+<tr>
+<td>55-65</td>
+<td>Pause.</td>
+</tr>
+<tr>
+<td>65-85</td>
+<td>Modtag og vis flaskeposten.</td>
+</tr>
+<tr>
+<td>85-100</td>
+<td>Afprøv tomme felter, lang tekst og HTML-tegn.</td>
+</tr>
+<tr>
+<td>100-115</td>
+<td>Egen ændring og bonusmission.</td>
+</tr>
+<tr>
+<td>115-120</td>
+<td>Forklar datarejsen for en makker.</td>
+</tr>
+</tbody></table>
+<h2>1. Start jeres app</h2>
+<p>Åbn browsereditoren. Hvis den viser <strong>Restricted Mode</strong>, så få underviseren til at bekræfte tillid til den udleverede kursusmappe. Vælg derefter <strong>Terminal → New Terminal</strong>. Skriv de tre linjer, én ad gangen:</p>
+<pre><code class="language-sh">cd /workspace/undervisning/04-flaskepost/start
+bin/rails db:prepare
+bin/rails server -b 0.0.0.0
+</code></pre>
+<p>Terminalen bliver optaget, mens serveren kører. Det er normalt. Åbn jeres <strong>app-adresse</strong> i en anden fane; log ind med holdnavn og holdpassword. Serveren modtager endnu ikke navn og tekst korrekt, fordi vi mangler to trin.</p>
+<p><strong>Vigtigt:</strong> Luk ikke terminalen under arbejdet. For at stoppe serveren klikker du i terminalen og trykker Ctrl + C. Kun én Rails-server må bruge port 3000 i jeres miljø ad gangen.</p>
+<p>Åbn filerne i mappen <code>04-flaskepost/start</code>. Arbejdet ligger nu på serveren, ikke på din Windows-maskine. Gem stadig med Ctrl + S. Rails indlæser kodeændringer, når du opdaterer siden.</p>
+<h2>2. Fem minutter med Ruby</h2>
+<p>Åbn endnu en terminal. Skriv <code>irb</code> og prøv én linje ad gangen:</p>
+<pre><code class="language-ruby">pirat = &quot;Kaptajn Krabbe&quot;
+guld = 12
+guld + 8
+&quot;Hej, #{pirat}!&quot;
+guld &gt;= 20
+</code></pre>
+<p>Ruby bruger ikke <code>var</code>, og variabler behøver normalt ikke semikolon. <code>#{pirat}</code> sætter en variabel ind i en tekst med dobbelte anførselstegn. Ruby og JavaScript er forskellige sprog, men begge kan huske værdier og tage beslutninger.</p>
+<p>Prøv derefter:</p>
+<pre><code class="language-ruby">if guld &gt;= 20
+  puts &quot;Du vandt!&quot;
+else
+  puts &quot;Find mere guld.&quot;
+end
+</code></pre>
+<p><code>puts</code> skriver tekst. <code>end</code> afslutter blokken. Skriv <code>exit</code> for at forlade Ruby-laboratoriet. Disse forsøg skal ikke kopieres ind i appens filer.</p>
+<h2>3. Følg flaskeposten</h2>
+<p><img src="illustrationer/browser-server-database.svg" alt="Fra browser til Rails og database"></p>
+<p>Åbn <code>config/routes.rb</code>:</p>
+<pre><code class="language-ruby">get &quot;flaskepost&quot;, to: &quot;flaskepost#new&quot;
+post &quot;flaskepost&quot;, to: &quot;flaskepost#create&quot;
+</code></pre>
+<p><strong>GET</strong> beder om en side. <strong>POST</strong> sender formularens data. En <strong>route</strong> er en vejviser: den forbinder en adresse og en HTTP-metode med en bestemt controller-metode.</p>
+<p>Åbn <code>app/views/flaskepost/new.html.erb</code>. Find formularen:</p>
+<pre><code class="language-erb">&lt;%= form_with url: flaskepost_path, method: :post, local: true do |form| %&gt;
+</code></pre>
+<p>Rails laver et almindeligt HTML-<code>form</code> ud fra denne kode. <code>form.label</code>, <code>form.text_field</code> og <code>form.text_area</code> laver felter, som dem fra gang 2. Vi bruger ikke JavaScript til at stoppe submit denne gang. Browseren sender formularen til serveren.</p>
+<p><strong>Undersøg:</strong> Højreklik på formularen i app-fanen og vælg Vis sidens kilde. Kan du finde <code>&lt;form&gt;</code>, <code>name=&quot;pirat&quot;</code> og et skjult sikkerhedsfelt? Browseren modtager HTML, ikke Ruby-koden.</p>
+<h2>4. Læs formularens data</h2>
+<p>Åbn <code>app/controllers/flaskepost_controller.rb</code>. Find de to linjer med <code>TRIN 1</code> inde i <code>create</code>. Erstat dem med:</p>
+<pre><code class="language-ruby">@pirat = params[:pirat].to_s.strip
+@tekst = params[:tekst].to_s.strip
+</code></pre>
+<p><code>params</code> indeholder data fra forespørgslen. <code>:pirat</code> er feltets navn. <code>to_s</code> gør værdien til tekst, og <code>strip</code> fjerner mellemrum i enderne. <code>@</code> gør variablen tilgængelig i det view, som controlleren viser.</p>
+<p>Den udleverede kode kontrollerer længderne. Godkendte data vises med <code>render :vis</code>. Ellers vises formularen igen med en fejlbesked. Vi kontrollerer også på serveren, fordi browserens <code>required</code> kan omgås.</p>
+<h2>5. Vis svaret</h2>
+<p>Åbn <code>app/views/flaskepost/vis.html.erb</code>. Erstat kommentaren <code>TRIN 2</code> med:</p>
+<pre><code class="language-erb">&lt;p&gt;&lt;strong&gt;&lt;%= @pirat %&gt;&lt;/strong&gt;: &lt;%= @tekst %&gt;&lt;/p&gt;
+</code></pre>
+<p><strong>ERB</strong> er HTML med små stykker Ruby. <code>&lt;%= ... %&gt;</code> beregner noget og skriver resultatet ind i HTML. <code>&lt;% ... %&gt;</code> kører kode uden selv at skrive et resultat, fx en betingelse.</p>
+<p><strong>Kontrol:</strong> Gem begge filer. Send en flaskepost. Den nye side skal vise jeres navn og eventyr. Ingen data er endnu lagt i en database.</p>
+<h2>Makkerprøven</h2>
+<ol>
+<li>Send et normalt eventyr. Hvilken tekst kommer fra formularen?</li>
+<li>Prøv kun mellemrum. Du skal få en forståelig fejl.</li>
+<li>Skriv <code>&lt;script&gt;alert(1)&lt;/script&gt;</code> som eventyr. Det skal vises som tekst. Rails escaper output; brug ikke <code>raw</code> eller <code>html_safe</code> på brugerens tekst.</li>
+<li>Klik <em>Send en ny flaskepost</em>. Den nye GET-side er tom. Browseren kan spørge om genafsendelse, hvis du i stedet trykker F5 på et POST-svar; det er ikke en database.</li>
+<li>Åbn appen på makkerens maskine. Der er ingen fælles historik endnu.</li>
+</ol>
+<h2>Bonusmissioner</h2>
+<ul>
+<li><strong>Let:</strong> Ændr sidens overskrift og knaptekst. Find ud af, hvilke dele der ligger i layoutet, og hvilke der ligger i det enkelte view.</li>
+<li><strong>Mellem:</strong> Tilføj skibsnavn i formularen. Læs det med <code>params[:skib].to_s.strip</code>, og vis <code>@skib</code> i svaret. Lav også en længdekontrol.</li>
+<li><strong>Svær:</strong> Vis en særlig besked, hvis eventyret nævner <code>skat</code>. Hint: <code>@tekst.downcase.include?(&quot;skat&quot;)</code> og en <code>if</code> i viewet.</li>
+</ul>
+<h2>Før du går</h2>
+<p>Tegn: browser → route → controller → view → browser. Fortæl, hvor Ruby kører, og hvorfor en lokal HTML-fil ikke kan køre Rails. Gem alle filer. Behold mappen; næste gang åbner vi en ny startmappe med samme flaskepost og en databaseøvelse.</p>
+</section>
+<section class="kapitel" id="del-5"><h1>Gang 5: En fælles logbog med database</h1>
+<p><strong>Mission:</strong> Gem eventyr, så andre kan læse dem, og vis appen online.</p>
+<p><strong>Du lærer:</strong> database, tabel, række, model, migration, validering og gem/hent med Active Record. Vi bruger SQLite: en rigtig database i en fil på serveren.</p>
+<p><strong>Start:</strong> Brug samme browsereditor. Gem gang 4, og stop dens Rails-server med Ctrl + C. Gang 5 har sin egen startmappe; dit arbejde fra gang 4 bliver liggende. Flaskepostdelen er allerede færdig i den nye mappe. Dagens nye filer er markeret nedenfor.</p>
+<h2>Plan: 120 minutter</h2>
+<table>
+<thead>
+<tr>
+<th>Minutter</th>
+<th>Aktivitet</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0-10</td>
+<td>Tegn forskellen på en lokal liste og en fælles database.</td>
+</tr>
+<tr>
+<td>10-25</td>
+<td>Undersøg modellen og migrationen; start appen.</td>
+</tr>
+<tr>
+<td>25-45</td>
+<td>Hent indlæg og forstå listen i viewet.</td>
+</tr>
+<tr>
+<td>45-55</td>
+<td>Gem første indlæg.</td>
+</tr>
+<tr>
+<td>55-65</td>
+<td>Pause.</td>
+</tr>
+<tr>
+<td>65-85</td>
+<td>Test fra to browsere, fejl og genstart.</td>
+</tr>
+<tr>
+<td>85-100</td>
+<td>Egen ændring, validering og bonus.</td>
+</tr>
+<tr>
+<td>100-115</td>
+<td>Underviserstyret deploy med Kamal; se adressen virke.</td>
+</tr>
+<tr>
+<td>115-120</td>
+<td>Vis jeres app og forklar, hvor data bor.</td>
+</tr>
+</tbody></table>
+<p>Deploy er forberedt og øvet af underviseren. Hvis netværket driller, viser I den fungerende app på udviklingsadressen; databaseøvelsen kan stadig gennemføres.</p>
+<h2>1. Fra papirkort til database</h2>
+<p>Tegn en tabel med kolonnerne <code>id</code>, <code>pirat</code> og <code>tekst</code>. Skriv tre eventyr på hver sin række. Databasen husker disse rækker for os. <code>id</code> er et unikt nummer; to pirater må gerne have samme navn.</p>
+<p>I sidste gang kendte serveren kun den aktuelle formular. Nu gemmer vi den i en database, som serveren kan læse igen senere. Det kaldes <strong>persistens</strong>: data overlever den enkelte forespørgsel og en genstart.</p>
+<h2>2. Modellen og migrationen</h2>
+<p>Åbn <code>05-faelles-logbog/start/app/models/entry.rb</code>:</p>
+<pre><code class="language-ruby">class Entry &lt; ApplicationRecord
+  validates :pirat, presence: true, length: { maximum: 24 }
+  validates :tekst, presence: true, length: { maximum: 280 }
+end
+</code></pre>
+<p>En <strong>model</strong> forbinder Ruby med data. <code>Entry</code> betyder et indlæg. Rails forbinder modellen <code>Entry</code> med tabellen <code>entries</code>. Vi bruger engelske navne til Rails-klasser og almindelige danske tekster på siden.</p>
+<p><code>validates</code> fortæller, hvilke regler der gælder: begge felter skal have indhold, og de må ikke være for lange.</p>
+<p>Åbn filen i <code>db/migrate</code>. Den har et tidsstempel i navnet:</p>
+<pre><code class="language-ruby">create_table :entries do |t|
+  t.string :pirat, null: false
+  t.text :tekst, null: false
+  t.timestamps
+end
+</code></pre>
+<p>En <strong>migration</strong> beskriver en ændring af databasens struktur. Denne laver tabellen. Rails tilføjer et id; <code>timestamps</code> tilføjer oprettelses- og ændringstid. Migrationen ligger klar som hjælpekode; du skal forstå felterne, ikke lære kommandoerne udenad.</p>
+<p>Start nu appen i terminalen:</p>
+<pre><code class="language-sh">cd /workspace/undervisning/05-faelles-logbog/start
+bin/rails db:prepare
+bin/rails server -b 0.0.0.0
+</code></pre>
+<p><code>db:prepare</code> opretter databasen og kører de migrationer, der mangler. Kommandoen sletter ikke eksisterende indlæg. Åbn eller opdater app-adressen. Listen er tom, og startversionen gemmer endnu intet.</p>
+<h2>3. Hent data</h2>
+<p>Åbn <code>app/controllers/entries_controller.rb</code>. Der er <strong>to</strong> linjer med <code>TRIN 1</code>. Erstat hver af dem med:</p>
+<pre><code class="language-ruby">@entries = Entry.order(id: :desc).limit(50)
+</code></pre>
+<p>Her beder vi modellen hente de seneste 50 indlæg, med højeste id først. <code>@entries</code> er en samling af modeller. Den ene linje bruges til den almindelige side, den anden til at vise siden igen ved ugyldigt input.</p>
+<p>Åbn <code>app/views/entries/index.html.erb</code>, og find:</p>
+<pre><code class="language-erb">&lt;% @entries.each do |entry| %&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;%= entry.pirat %&gt;&lt;/strong&gt;: &lt;%= entry.tekst %&gt;&lt;/li&gt;
+&lt;% end %&gt;
+</code></pre>
+<p>Ruby-<code>each</code> minder om JavaScripts <code>forEach</code>: én tur gennem løkken for hvert indlæg. Viewet er allerede skrevet, så det kan vise de data, I henter.</p>
+<h2>4. Gem et indlæg</h2>
+<p>Tilbage i <code>entries_controller.rb</code>: erstat linjen <code>if false # TRIN 2...</code> med:</p>
+<pre><code class="language-ruby">if @entry.save
+</code></pre>
+<p>Den udleverede linje før betingelsen bygger en ny model:</p>
+<pre><code class="language-ruby">@entry = Entry.new(entry_params)
+</code></pre>
+<p><code>new</code> bygger et objekt i hukommelsen. <code>save</code> kontrollerer reglerne og gemmer i databasen, hvis de er opfyldt. Derfor er <code>new</code> alene ikke nok.</p>
+<p><code>entry_params</code> nederst i filen accepterer kun felterne <code>pirat</code> og <code>tekst</code>. Når det lykkes, sender <code>redirect_to</code> browseren til listen. Det gør, at almindelig F5 ikke sender den samme formular igen. Hvis data er forkerte, viser Rails formularen med de indtastede værdier og en fejlbesked.</p>
+<p><strong>Kontrol:</strong> Gem filen, opdater browseren og send et eventyr. Det skal dukke op i listen, og formularen bliver tom.</p>
+<h2>5. Se ind i databasen</h2>
+<p>Åbn en ekstra terminal i samme appmappe:</p>
+<pre><code class="language-sh">bin/rails runner &#39;puts Entry.count&#39;
+</code></pre>
+<p>Det viser antallet af indlæg. Rails bruger SQL under overfladen. Underviseren viser en forespørgsel direkte i SQLite:</p>
+<pre><code class="language-sh">sqlite3 storage/development.sqlite3 &#39;SELECT id, pirat, tekst FROM entries;&#39;
+</code></pre>
+<p><code>SELECT</code> læser rækker. En gemning bruger normalt <code>INSERT</code>. I har fået en første smagsprøve på begge lag: Ruby-modellen og databasen bag den.</p>
+<h2>Makkerprøven</h2>
+<ol>
+<li>Gem to eventyr. Er det nyeste øverst?</li>
+<li>Tryk F5 flere gange. Antallet af indlæg skal være uændret.</li>
+<li>Åbn <strong>samme app-adresse</strong> på en anden maskine og log ind. Kan I læse begge indlæg? En anden holds adresse har sin egen database.</li>
+<li>Stop Rails-serveren med Ctrl + C og start den igen med samme kommando og mappe. Er indlæggene der stadig?</li>
+<li>Send kun mellemrum. Der skal komme en fejl og ingen ny række.</li>
+<li>Skriv <code>&lt;b&gt;Skat!&lt;/b&gt;</code> i et eventyr. Det skal vises som tekst, ikke udføres som HTML.</li>
+</ol>
+<p>Listen opdateres ved en ny sideindlæsning, ikke automatisk i alle åbne faner. Klik <em>Hent nyeste eventyr</em>, når en makker har skrevet.</p>
+<h2>Bonusmissioner</h2>
+<ul>
+<li><strong>Let:</strong> Vis tidspunktet under hvert indlæg. Hint: <code>entry.created_at.strftime(&quot;%d/%m %H:%M&quot;)</code>.</li>
+<li><strong>Mellem:</strong> Sæt tekstgrænsen til 140 tegn. Ret modellen, formularens <code>maxlength</code> og fejlbeskeden, så regler og beskeder stemmer overens. Undersøg, om serveren også afviser for lang tekst.</li>
+<li><strong>Svær:</strong> Tilføj et skibsnavn via en ny migration, model, formular og <code>entry_params</code>. Få underviseren til at hjælpe med migrationskommandoen. Redigér ikke en allerede kørt migration for at ændre tabellen.</li>
+</ul>
+<h2>6. Gør appen tilgængelig med Kamal</h2>
+<p>Underviseren hjælper med at tage en kopi af jeres færdige kode, gemme den i Git og køre deployment. I ændrer selv en overskrift, som gør jeres app genkendelig.</p>
+<p>Se forløbet: <strong>kode → Docker-image → server → webadresse</strong>. Kamal starter appen og forbinder adressen med den. Databasen ligger i en separat volume, som bliver bevaret, når appens kode udskiftes.</p>
+<p>Udviklingsdatabasen flyttes ikke automatisk til den publicerede app. Skriv et nyt testeventyr på den publicerede adresse, deploy en lille tekstændring, og kontrollér, at indlægget stadig findes. Det er vores sidste persistensprøve.</p>
+<h2>Før du går</h2>
+<p>Forklar med egne ord: Hvad kører i browseren? Hvad kører på serveren? Hvor gemmes eventyrene? Hvad er forskellen på at gemme kode i Git og at gemme data i SQLite?</p>
+<p>Du har nu bygget både en hjemmeside, et spil, en formular, dynamisk indhold og en app med database.</p>
+</section>
+<section class="kapitel" id="del-6"><h1>Ordbog og fejlfinding</h1>
+<h2>Ordbog</h2>
+<table>
+<thead>
+<tr>
+<th>Ord</th>
+<th>Kort forklaring</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HTML</td>
+<td>Beskriver indholdet på en side.</td>
+</tr>
+<tr>
+<td>Tag</td>
+<td>En markering som <code>&lt;p&gt;</code> eller <code>&lt;/p&gt;</code>.</td>
+</tr>
+<tr>
+<td>CSS</td>
+<td>Regler for sidens udseende.</td>
+</tr>
+<tr>
+<td>JavaScript</td>
+<td>Kode, vi kører i browseren for at reagere på handlinger.</td>
+</tr>
+<tr>
+<td>Variabel</td>
+<td>Et navn, som peger på en værdi.</td>
+</tr>
+<tr>
+<td>Funktion/metode</td>
+<td>En navngivet eller samlet portion kode.</td>
+</tr>
+<tr>
+<td>Event</td>
+<td>Noget der sker, fx klik, input eller submit.</td>
+</tr>
+<tr>
+<td>DOM</td>
+<td>Browserens model af sidens elementer.</td>
+</tr>
+<tr>
+<td>Formular</td>
+<td>Felter og en måde at sende deres indhold på.</td>
+</tr>
+<tr>
+<td>Validering</td>
+<td>At kontrollere, om data følger reglerne.</td>
+</tr>
+<tr>
+<td>Objekt</td>
+<td>Flere egenskaber samlet om én ting.</td>
+</tr>
+<tr>
+<td>Array</td>
+<td>En liste med værdier eller objekter.</td>
+</tr>
+<tr>
+<td>JSON</td>
+<td>En tekstform, som kan beskrive lister og objekter.</td>
+</tr>
+<tr>
+<td>localStorage</td>
+<td>Lager i én browser, knyttet til sidens adresse.</td>
+</tr>
+<tr>
+<td>Server</td>
+<td>En computer/proces, der svarer på browserens forespørgsler.</td>
+</tr>
+<tr>
+<td>HTTP, GET, POST</td>
+<td>Måden browser og server taler sammen; hent en side eller send data.</td>
+</tr>
+<tr>
+<td>Ruby</td>
+<td>Programmeringssproget bag vores Rails-kode.</td>
+</tr>
+<tr>
+<td>Rails</td>
+<td>Et Ruby-framework med færdige dele til webapps.</td>
+</tr>
+<tr>
+<td>Route</td>
+<td>Vejviser fra en webadresse og metode til controllerkode.</td>
+</tr>
+<tr>
+<td>Controller</td>
+<td>Modtager en request og vælger, hvad der skal ske.</td>
+</tr>
+<tr>
+<td>View/ERB</td>
+<td>HTML-skabelon, der kan vise værdier fra Ruby.</td>
+</tr>
+<tr>
+<td>Model</td>
+<td>Ruby-objekt med regler og adgang til data.</td>
+</tr>
+<tr>
+<td>Database</td>
+<td>Struktureret lager med tabeller og rækker.</td>
+</tr>
+<tr>
+<td>SQLite</td>
+<td>En database, der ligger i en fil og ikke kræver en separat serverproces.</td>
+</tr>
+<tr>
+<td>SQL</td>
+<td>Sprog til at læse og ændre databasedata.</td>
+</tr>
+<tr>
+<td>Migration</td>
+<td>En versioneret ændring af databasens struktur.</td>
+</tr>
+<tr>
+<td>Persistens</td>
+<td>At data bliver bevaret mellem forespørgsler/genstarter.</td>
+</tr>
+<tr>
+<td>Docker-image</td>
+<td>En pakket opskrift på app og dens runtime.</td>
+</tr>
+<tr>
+<td>Container</td>
+<td>Et kørende miljø baseret på et image.</td>
+</tr>
+<tr>
+<td>Volume</td>
+<td>Et lager, som kan overleve en containers udskiftning.</td>
+</tr>
+<tr>
+<td>Deploy</td>
+<td>At udgive en version af koden til en kørende app.</td>
+</tr>
+<tr>
+<td>Git-commit</td>
+<td>Et gemt trin i programkodens historie; det er ikke en databasebackup.</td>
+</tr>
+</tbody></table>
+<h2>Find fejlen</h2>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Prøv først</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Ændringen vises ikke</td>
+<td>Gem den rigtige fil. Opdater den rigtige browserfane.</td>
+</tr>
+<tr>
+<td>HTML åbner som tekst</td>
+<td>Kontrollér filtypen; filen må ikke hedde <code>.html.txt</code>.</td>
+</tr>
+<tr>
+<td>CSS virker ikke</td>
+<td>Kontrollér href, filnavn og at filen er i samme mappe.</td>
+</tr>
+<tr>
+<td>JavaScript reagerer ikke</td>
+<td>Kontrollér id&#39;er og store bogstaver. Åbn F12 → Console og læs første fejl.</td>
+</tr>
+<tr>
+<td>En liste vises dobbelt</td>
+<td>Ryd listen før du tegner den igen; undersøg <code>visIndlaeg</code>.</td>
+</tr>
+<tr>
+<td>Lokal logbog er væk</td>
+<td>Samme browser, samme adresse og ikke privat browsing? Spørg før du sletter lageret.</td>
+</tr>
+<tr>
+<td>Forkerte æ/ø/å</td>
+<td>Gem som UTF-8, og behold <code>&lt;meta charset=&quot;utf-8&quot;&gt;</code>.</td>
+</tr>
+<tr>
+<td>Editor-login virker, men appen viser 502</td>
+<td>Start Rails i editorens terminal. Kontrollér mappe og port.</td>
+</tr>
+<tr>
+<td>Address already in use</td>
+<td>Stop den gamle Rails-proces med Ctrl + C. Start ikke flere på port 3000.</td>
+</tr>
+<tr>
+<td>Blocked host</td>
+<td>Underviseren kontrollerer APP_HOST og proxyens Host-header.</td>
+</tr>
+<tr>
+<td>Rails viser en syntax error</td>
+<td>Gå til den nævnte fil/linje; se efter et manglende <code>end</code> eller anførselstegn.</td>
+</tr>
+<tr>
+<td>Databasetabellen mangler</td>
+<td>Kør <code>bin/rails db:prepare</code> fra den rigtige appmappe.</td>
+</tr>
+<tr>
+<td>Startversionen af gang 5 gemmer ikke</td>
+<td>Er begge TRIN 1-linjer og <code>if false</code> erstattet?</td>
+</tr>
+<tr>
+<td>Makkeren ser ikke mit indlæg</td>
+<td>Brug samme app-adresse og genindlæs. Det er ikke en live-chat.</td>
+</tr>
+<tr>
+<td>Produktionsdata mangler efter deploy</td>
+<td>Underviseren kontrollerer volume-navn og DATABASE_PATH. Opret ikke en ny volume ved hvert deploy.</td>
+</tr>
+</tbody></table>
+<h2>Tre gode fejlvaner</h2>
+<ol>
+<li>Læs den første fejl, ikke alle fejl på én gang.</li>
+<li>Lav én lille ændring, gem og prøv igen.</li>
+<li>Forklar din forventning til en makker, før I kopierer fra facit.</li>
+</ol>
+</section></main></body></html>

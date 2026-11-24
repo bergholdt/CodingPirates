@@ -1,0 +1,9 @@
+/.git
+/.bundle
+/log/*
+/tmp/*
+/storage/*
+/config/master.key
+/.kamal
+/.env*
+/test

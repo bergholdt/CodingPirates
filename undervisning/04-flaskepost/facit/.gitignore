@@ -1,0 +1,10 @@
+/log/*
+!/log/.keep
+/tmp/*
+!/tmp/.keep
+/storage/*
+!/storage/.keep
+/.bundle/
+/.kamal/secrets
+/.env*
+/config/master.key

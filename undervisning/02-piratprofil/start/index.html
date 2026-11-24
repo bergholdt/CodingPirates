@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dit piratpas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>Dit piratpas</h1>
+  <p>Vælg et opdigtet piratnavn. Brug ikke dit fulde navn.</p>
+  <form id="profil-form">
+    <label for="navn">Piratnavn</label>
+    <input id="navn" name="pirat" maxlength="24" required>
+    <label for="rolle">Din rolle på skibet</label>
+    <select id="rolle" name="rolle">
+      <option value="Kaptajn">Kaptajn</option>
+      <option value="Navigatør">Navigatør</option>
+      <option value="Skattejæger">Skattejæger</option>
+    </select>
+    <button type="submit">Lav mit piratpas</button>
+  </form>
+  <section class="kort" aria-labelledby="kort-titel">
+    <h2 id="kort-titel">Dit kommende piratpas</h2>
+    <p id="preview">Hej, ukendte pirat!</p>
+    <p id="resultat" aria-live="polite">Udfyld formularen for at mønstre på.</p>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

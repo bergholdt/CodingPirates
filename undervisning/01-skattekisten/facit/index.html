@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Piratens skat</title>
+  <style>
+body {
+  background: #14213d;
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 40px;
+}
+h1 {
+  color: gold;
+  font-size: 42px;
+}
+p {
+  font-size: 22px;
+}
+button {
+  background: gold;
+  color: black;
+  font-size: 24px;
+  padding: 20px;
+  border: 4px solid orange;
+  border-radius: 12px;
+  cursor: pointer;
+}
+button:hover {
+  background: orange;
+}
+  </style>
+</head>
+<body>
+  <h1>Piratens skat</h1>
+  <p>Find mindst 20 guld for at vinde!</p>
+  <button id="kiste">Åbn skattekisten</button>
+  <p>Dit guld: <span id="guld">0</span></p>
+  <p id="besked">Er du klar, kaptajn?</p>
+  <script>
+var guld = 0;
+var knap = document.getElementById("kiste");
+var guldtal = document.getElementById("guld");
+var besked = document.getElementById("besked");
+
+knap.onclick = function() {
+  var fund = Math.floor(Math.random() * 3) + 1;
+  guld = guld + fund;
+  guldtal.textContent = guld;
+  besked.textContent = "Du fandt " + fund + " guld!";
+
+  if (guld >= 20) {
+    besked.textContent = "Du vandt, kaptajn!";
+    knap.textContent = "Skatten er din!";
+    knap.disabled = true;
+  }
+};
+  </script>
+</body>
+</html>

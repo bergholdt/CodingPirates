@@ -1,0 +1,21 @@
+<h1>Den fælles piratlogbog</h1>
+<p>Andre på holdet kan læse dine indlæg. Brug opdigtede navne og eventyr.</p>
+<% if @entry.errors.any? %>
+  <div role="alert">
+    <p>Kunne ikke gemme. Udfyld begge felter: navn højst 24 tegn, eventyr højst 280 tegn.</p>
+  </div>
+<% end %>
+<%= form_with model: @entry, local: true do |form| %>
+  <%= form.label :pirat, "Piratnavn" %>
+  <%= form.text_field :pirat, required: true, maxlength: 24 %>
+  <%= form.label :tekst, "Dit eventyr" %>
+  <%= form.text_area :tekst, required: true, maxlength: 280 %>
+  <%= form.submit "Gem eventyr" %>
+<% end %>
+<h2>De nyeste 50 eventyr</h2>
+<ul>
+  <% @entries.each do |entry| %>
+    <li><strong><%= entry.pirat %></strong>: <%= entry.tekst %></li>
+  <% end %>
+</ul>
+<p><%= link_to "Hent nyeste eventyr", entries_path %></p>
